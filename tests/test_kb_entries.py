@@ -37,7 +37,9 @@ def test_every_cotton_entry_validates(path: Path) -> None:
 def test_knowledge_base_scope_is_complete() -> None:
     entries = load_all_entries(kb_dir=KB_DIR)
     tomato = [e for e in entries.values() if e.crop == "tomato"]
+    cotton = [e for e in entries.values() if e.crop == "cotton"]
     assert len(tomato) >= 9, "tomato KB must cover the 8 hackathon diseases plus mites"
+    assert len(cotton) >= 7, "cotton KB must cover the 7 planned diseases"
 
 
 def test_every_entry_has_a_source_with_org_and_title() -> None:

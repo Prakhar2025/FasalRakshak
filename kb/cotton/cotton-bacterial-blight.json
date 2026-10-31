@@ -1,0 +1,61 @@
+{
+  "id": "cotton-bacterial-blight",
+  "crop": "cotton",
+  "disease": "Bacterial blight",
+  "pathogen": "Xanthomonas citri subsp. malvacearum",
+  "aliases": ["कपास बैक्टीरियल अंगमारी"],
+  "symptoms": [
+    "Angular, water-soaked leaf spots that turn brown-black with age",
+    "Black vein streaks along the leaf veins",
+    "Black arm: dark lesions on stems and branches",
+    "Boll rot with sunken dark patches, lint staining"
+  ],
+  "severity_cues": {
+    "early": "Angular leaf spots only",
+    "advanced": "Vein streaks, stem lesions (black arm), boll rot and lint staining"
+  },
+  "favorable_conditions": "Warm (28 to 35 C) wet weather, wind-driven rain, dense canopy, infected seed lots",
+  "treatment": {
+    "summary": "Suppress with copper plus streptocycline sprays and stop it spreading by sanitation, since bactericides suppress but do not cure",
+    "steps": [
+      "Spray Copper oxychloride 50 WP at 3.0 g per litre plus Streptocycline at 0.05 g per litre",
+      "Repeat every 10 days while wet weather continues",
+      "Collect and destroy infected plant debris, do not reuse the same field seed",
+      "For next season: use certified disease-free or acid-delinted seed"
+    ],
+    "products": [
+      {
+        "name": "Copper oxychloride 50 WP",
+        "active_ingredient": "copper oxychloride",
+        "dose": "3.0",
+        "dose_max": "3.0",
+        "unit": "g per litre",
+        "phi_days": 7,
+        "label_source": "CIB&RC registered label, waiting period 7 days"
+      },
+      {
+        "name": "Streptocycline (streptomycin sulphate plus tetracycline hydrochloride)",
+        "active_ingredient": "streptomycin sulphate, tetracycline hydrochloride",
+        "dose": "0.05",
+        "dose_max": "0.05",
+        "unit": "g per litre",
+        "phi_days": 7,
+        "label_source": "State agriculture advisory, 0.5 g per 10 litres"
+      }
+    ],
+    "organic": [
+      "Seed treatment with hot water before sowing",
+      "Crop rotation out of cotton and clean residue destruction"
+    ]
+  },
+  "source": {
+    "org": "ICAR Central Institute for Cotton Research (CICR), cotton disease advisory",
+    "title": "Cotton: bacterial blight management",
+    "url": "https://cicr.org.in",
+    "accessed": "2026-11-01"
+  },
+  "safety_notes": [
+    "Wear gloves, mask and full sleeves while spraying",
+    "Do not pick cotton within 7 days of spray"
+  ]
+}

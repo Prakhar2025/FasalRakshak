@@ -1,0 +1,44 @@
+{
+  "id": "cotton-fusarium-wilt",
+  "crop": "cotton",
+  "disease": "Fusarium wilt",
+  "pathogen": "Fusarium oxysporum f. sp. vasinfectum",
+  "aliases": ["कपास फ्यूजेरियम झुलसा"],
+  "symptoms": [
+    "Yellowing and drooping of leaves on one side of the plant or one branch first",
+    "Brown streaks visible inside the stem when split lengthwise",
+    "Plants wilt suddenly in patches, often after irrigation",
+    "Stunted plants with browning vascular ring; leaf edges scorch"
+  ],
+  "severity_cues": {
+    "early": "Isolated wilting plants in a patch",
+    "advanced": "Patch-wise plant death across the field"
+  },
+  "favorable_conditions": "Warm moist soil, poor drainage, nematode-damaged roots, continuous cotton cropping",
+  "treatment": {
+    "summary": "No chemical cures a wilted plant. Save the rest of the field: sanitation, biologicals, drainage, rotation",
+    "steps": [
+      "Uproot and destroy wilted plants with root soil, burn or bury them away from the field",
+      "Treat seed for next sowing with Trichoderma viride at 4 to 6 g per kg seed",
+      "Improve drainage and avoid over-irrigation",
+      "Plan a 2 to 3 year rotation with non-host crops such as sorghum or maize",
+      "Manage root-knot nematodes, they open the door for Fusarium"
+    ],
+    "products": [],
+    "organic": [
+      "Trichoderma viride or harzianum: seed treatment 4 to 6 g per kg, and soil application with FYM",
+      "Neem cake application to soil at recommended rates",
+      "Raised-bed planting and drainage correction"
+    ]
+  },
+  "source": {
+    "org": "ICAR Central Institute for Cotton Research (CICR), cotton disease advisory",
+    "title": "Cotton: wilt management",
+    "url": "https://cicr.org.in",
+    "accessed": "2026-11-01"
+  },
+  "safety_notes": [
+    "No spray is involved: safety comes from sanitation and rotation discipline",
+    "Wilted plants must be removed with root soil, never left to dry in the field"
+  ]
+}

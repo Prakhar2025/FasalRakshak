@@ -1,0 +1,52 @@
+{
+  "id": "cotton-rust",
+  "crop": "cotton",
+  "disease": "Cotton rust",
+  "pathogen": "Phakopsora gossypii",
+  "aliases": ["कपास रतुआ", "रस्ट"],
+  "symptoms": [
+    "Small yellowish-brown pustules (raised dots) mostly on the lower leaf surface",
+    "Orange-brown powdery spores rub off on fingers",
+    "Upper surface above pustules shows pale yellow patches",
+    "Severe attack: leaves dry, curl and drop early"
+  ],
+  "severity_cues": {
+    "early": "Few pustules on older leaves",
+    "advanced": "Pustules across the canopy, bronzing and early leaf drop"
+  },
+  "favorable_conditions": "Cool humid spells, dew, delayed canopy drying",
+  "treatment": {
+    "summary": "Protective systemic fungicide before the next wet spell",
+    "steps": [
+      "Spray Propiconazole 25 EC at 1.0 ml per litre, repeat after 12 to 15 days if weather favors rust",
+      "Improve drying: irrigation in the morning, not evening",
+      "Destroy crop residue after the last picking",
+      "Rotate out of cotton next season where rust repeats"
+    ],
+    "products": [
+      {
+        "name": "Propiconazole 25 EC",
+        "active_ingredient": "propiconazole",
+        "dose": "1.0",
+        "dose_max": "1.0",
+        "unit": "ml per litre",
+        "phi_days": 14,
+        "label_source": "CIB&RC registered label, waiting period on cotton 14 days"
+      }
+    ],
+    "organic": [
+      "Wettable sulphur 80 WP at 2.0 to 2.5 g per litre, avoiding spray above 32 C",
+      "Residue destruction and rotation"
+    ]
+  },
+  "source": {
+    "org": "ICAR Central Institute for Cotton Research (CICR), cotton disease advisory",
+    "title": "Cotton: rust management",
+    "url": "https://cicr.org.in",
+    "accessed": "2026-11-01"
+  },
+  "safety_notes": [
+    "Wear gloves, mask and full sleeves while spraying",
+    "Do not pick cotton within 14 days of spray"
+  ]
+}

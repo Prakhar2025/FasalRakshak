@@ -1,0 +1,53 @@
+{
+  "id": "cotton-leaf-curl-virus",
+  "crop": "cotton",
+  "disease": "Cotton leaf curl virus",
+  "pathogen": "Cotton leaf curl virus (begomovirus complex), spread by the whitefly Bemisia tabaci",
+  "aliases": ["कपास पत्ती मरोड़ा रोग"],
+  "symptoms": [
+    "Upward or downward curling of leaves with thickened veins",
+    "Enations (leafy outgrowths) on the underside of veins",
+    "Stunted plants with shortened internodes and fewer bolls",
+    "Whitefly adults or nymphs visible under leaves"
+  ],
+  "severity_cues": {
+    "early": "Few plants with curled leaves and vein thickening",
+    "advanced": "Many stunted plants, enations common, boll set badly hit"
+  },
+  "favorable_conditions": "Warm dry weather with high whitefly pressure, weedy hosts, susceptible varieties",
+  "treatment": {
+    "summary": "No cure once infected. Kill the vector, rogue the plants, protect the rest",
+    "steps": [
+      "Uproot and destroy infected plants weekly, starting from first symptoms",
+      "Control whitefly: spray Imidacloprid 17.8 SL at 0.3 ml per litre, rotate with another chemistry to avoid resistance",
+      "Keep field borders and weeds clean, they shelter whiteflies",
+      "For next season: sow an officially recommended leaf-curl tolerant variety",
+      "Avoid excess nitrogen sprays that make lush whitefly-friendly growth"
+    ],
+    "products": [
+      {
+        "name": "Imidacloprid 17.8 SL",
+        "active_ingredient": "imidacloprid",
+        "dose": "0.3",
+        "dose_max": "0.5",
+        "unit": "ml per litre",
+        "phi_days": 15,
+        "label_source": "CIB&RC registered label, waiting period on cotton 15 days"
+      }
+    ],
+    "organic": [
+      "Yellow sticky traps at 10 per acre plus neem oil 1500 ppm at 3 ml per litre",
+      "Tolerant varieties and early sowing to escape peak whitefly"
+    ]
+  },
+  "source": {
+    "org": "ICAR Central Institute for Cotton Research (CICR), cotton disease advisory",
+    "title": "Cotton: leaf curl virus and whitefly management",
+    "url": "https://cicr.org.in",
+    "accessed": "2026-11-01"
+  },
+  "safety_notes": [
+    "Wear gloves, mask and full sleeves while spraying",
+    "Do not pick cotton within 15 days of any insecticide spray"
+  ]
+}

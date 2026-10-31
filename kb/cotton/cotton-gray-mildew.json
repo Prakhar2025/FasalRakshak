@@ -1,0 +1,52 @@
+{
+  "id": "cotton-gray-mildew",
+  "crop": "cotton",
+  "disease": "Gray mildew",
+  "pathogen": "Ramularia areola",
+  "aliases": ["कपास धूसर फफूंद", "रामुलेरिया"],
+  "symptoms": [
+    "Angular, white to greyish spots on the lower leaf surface with violet edges",
+    "White powdery fungal growth visible on the underside of spots",
+    "Spots join, leaves turn yellow-brown and drop prematurely",
+    "Usually appears after boll set in humid weather"
+  ],
+  "severity_cues": {
+    "early": "Few angular white spots on lower leaves",
+    "advanced": "White sporulation across the canopy, premature defoliation"
+  },
+  "favorable_conditions": "High humidity, warm overcast weather, dense late-season canopy",
+  "treatment": {
+    "summary": "Systemic fungicide on schedule and defoliation management",
+    "steps": [
+      "Spray Propiconazole 25 EC at 1.0 ml per litre, repeat after 12 to 15 days if humid",
+      "Spray coverage matters: wet both leaf surfaces",
+      "Collect and destroy fallen leaves",
+      "Do not delay pickings, open bolls suffer from falling debris"
+    ],
+    "products": [
+      {
+        "name": "Propiconazole 25 EC",
+        "active_ingredient": "propiconazole",
+        "dose": "1.0",
+        "dose_max": "1.0",
+        "unit": "ml per litre",
+        "phi_days": 14,
+        "label_source": "CIB&RC registered label, waiting period on cotton 14 days"
+      }
+    ],
+    "organic": [
+      "Copper oxychloride 50 WP at 2.5 to 3.0 g per litre as a protectant",
+      "Balanced fertilization and canopy opening"
+    ]
+  },
+  "source": {
+    "org": "ICAR Central Institute for Cotton Research (CICR), cotton disease advisory",
+    "title": "Cotton: gray mildew management",
+    "url": "https://cicr.org.in",
+    "accessed": "2026-11-01"
+  },
+  "safety_notes": [
+    "Wear gloves, mask and full sleeves while spraying",
+    "Do not pick cotton within 14 days of spray"
+  ]
+}

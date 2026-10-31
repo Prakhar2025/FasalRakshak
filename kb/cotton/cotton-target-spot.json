@@ -1,0 +1,52 @@
+{
+  "id": "cotton-target-spot",
+  "crop": "cotton",
+  "disease": "Target spot",
+  "pathogen": "Corynespora cassiicola",
+  "aliases": ["कपास टारगेट स्पॉट"],
+  "symptoms": [
+    "Large light-brown lesions with concentric rings, up to 1 to 2 cm",
+    "Lesions start on mature leaves in the lower canopy and move up",
+    "Lesions tear and drop out in the centre, giving a shot-hole look",
+    "Rapid defoliation when humid weather persists"
+  ],
+  "severity_cues": {
+    "early": "Few ringed lesions on lower mature leaves",
+    "advanced": "Defoliation moving up the plant, lesions on bracts and bolls"
+  },
+  "favorable_conditions": "High humidity, warm cloudy weather, closed canopy, late season",
+  "treatment": {
+    "summary": "Protective fungicide before wet spells, plus canopy management to slow it",
+    "steps": [
+      "Spray Mancozeb 75 WP at 2.5 g per litre, repeat every 10 days while humid",
+      "Balance nitrogen: lush over-fed canopies burn worse",
+      "Collect fallen infected leaves and destroy them off the field",
+      "Plan pickings: do not delay the first picking in a wet season"
+    ],
+    "products": [
+      {
+        "name": "Mancozeb 75 WP",
+        "active_ingredient": "mancozeb",
+        "dose": "2.5",
+        "dose_max": "2.5",
+        "unit": "g per litre",
+        "phi_days": 14,
+        "label_source": "CIB&RC registered label, waiting period on cotton 14 days"
+      }
+    ],
+    "organic": [
+      "Copper oxychloride 50 WP at 2.5 to 3.0 g per litre",
+      "Wider spacing next season and balanced fertilization"
+    ]
+  },
+  "source": {
+    "org": "ICAR Central Institute for Cotton Research (CICR), cotton disease advisory",
+    "title": "Cotton: target spot management",
+    "url": "https://cicr.org.in",
+    "accessed": "2026-11-01"
+  },
+  "safety_notes": [
+    "Wear gloves, mask and full sleeves while spraying",
+    "Do not pick cotton within 14 days of spray"
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "id": "cotton-alternaria-leaf-spot",
+  "crop": "cotton",
+  "disease": "Alternaria leaf spot",
+  "pathogen": "Alternaria macrospora",
+  "aliases": ["कपास अल्टरनेरिया धब्बा"],
+  "symptoms": [
+    "Round brown spots with concentric rings on leaves, often 5 to 10 mm",
+    "Yellow halo around spots, spots may join and tear the leaf",
+    "Starts on older leaves after boll formation",
+    "Premature leaf drop in severe cases"
+  ],
+  "severity_cues": {
+    "early": "Few ringed spots on older leaves",
+    "advanced": "Spotting across canopy, leaf drop, opened bolls exposed to sun"
+  },
+  "favorable_conditions": "Warm humid weather, cloudy days, nutrient-stressed or ageing crop",
+  "treatment": {
+    "summary": "Protective fungicide on schedule plus balanced nutrition, stressed plants spot worse",
+    "steps": [
+      "Spray Mancozeb 75 WP at 2.5 g per litre, repeat every 10 days",
+      "Check potash nutrition: deficient plants spot worse",
+      "Remove heavily spotted lower leaves off the field",
+      "Avoid late irrigation that keeps the canopy wet overnight"
+    ],
+    "products": [
+      {
+        "name": "Mancozeb 75 WP",
+        "active_ingredient": "mancozeb",
+        "dose": "2.5",
+        "dose_max": "2.5",
+        "unit": "g per litre",
+        "phi_days": 14,
+        "label_source": "CIB&RC registered label, waiting period on cotton 14 days"
+      },
+      {
+        "name": "Propiconazole 25 EC",
+        "active_ingredient": "propiconazole",
+        "dose": "1.0",
+        "dose_max": "1.0",
+        "unit": "ml per litre",
+        "phi_days": 14,
+        "label_source": "CIB&RC registered label, waiting period on cotton 14 days"
+      }
+    ],
+    "organic": [
+      "Copper oxychloride 50 WP at 2.5 to 3.0 g per litre",
+      "Balanced NPK with recommended potash top-up"
+    ]
+  },
+  "source": {
+    "org": "ICAR Central Institute for Cotton Research (CICR), cotton disease advisory",
+    "title": "Cotton: Alternaria leaf spot management",
+    "url": "https://cicr.org.in",
+    "accessed": "2026-11-01"
+  },
+  "safety_notes": [
+    "Wear gloves, mask and full sleeves while spraying",
+    "Do not pick cotton within 14 days of spray"
+  ]
+}
