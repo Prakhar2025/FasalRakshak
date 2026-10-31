@@ -1,0 +1,120 @@
+{
+  "snapshot_date": "2026-11-01",
+  "source": "Central Insecticides Board and Registration Committee (CIB&RC), Ministry of Agriculture and Farmers Welfare, Government of India: consolidated lists of pesticides banned for manufacture, import and use; pesticides restricted in use. Re-verify against the live CIB&RC lists before any public release.",
+  "entries": [
+    {
+      "active_ingredient": "aldrin",
+      "status": "banned",
+      "citation": "CIB&RC list of pesticides banned for manufacture, import and use (original banned list)",
+      "notes": ""
+    },
+    {
+      "active_ingredient": "benzene hexachloride",
+      "status": "banned",
+      "citation": "CIB&RC list of pesticides banned for manufacture, import and use (original banned list)",
+      "notes": "BHC, includes technical HCH"
+    },
+    {
+      "active_ingredient": "calcium cyanide",
+      "status": "banned",
+      "citation": "CIB&RC list of pesticides banned for manufacture, import and use (original banned list)",
+      "notes": ""
+    },
+    {
+      "active_ingredient": "chlordane",
+      "status": "banned",
+      "citation": "CIB&RC list of pesticides banned for manufacture, import and use (original banned list)",
+      "notes": ""
+    },
+    {
+      "active_ingredient": "copper acetoarsenite",
+      "status": "banned",
+      "citation": "CIB&RC list of pesticides banned for manufacture, import and use (original banned list)",
+      "notes": "Paris green"
+    },
+    {
+      "active_ingredient": "dibromochloropropane",
+      "status": "banned",
+      "citation": "CIB&RC list of pesticides banned for manufacture, import and use (original banned list)",
+      "notes": "DBCP, soil fumigant"
+    },
+    {
+      "active_ingredient": "endrin",
+      "status": "banned",
+      "citation": "CIB&RC list of pesticides banned for manufacture, import and use (original banned list)",
+      "notes": ""
+    },
+    {
+      "active_ingredient": "ethyl mercury chloride",
+      "status": "banned",
+      "citation": "CIB&RC list of pesticides banned for manufacture, import and use (original banned list)",
+      "notes": "Organomercury seed treatment"
+    },
+    {
+      "active_ingredient": "ethyl parathion",
+      "status": "banned",
+      "citation": "CIB&RC list of pesticides banned for manufacture, import and use (original banned list)",
+      "notes": ""
+    },
+    {
+      "active_ingredient": "heptachlor",
+      "status": "banned",
+      "citation": "CIB&RC list of pesticides banned for manufacture, import and use (original banned list)",
+      "notes": ""
+    },
+    {
+      "active_ingredient": "endosulfan",
+      "status": "banned",
+      "citation": "Supreme Court of India order, May 2011: production, sale and use banned nationwide",
+      "notes": ""
+    },
+    {
+      "active_ingredient": "alachlor",
+      "status": "banned",
+      "citation": "Gazette notification S.O. 3951(E), 8 August 2018: banned for import, manufacture and sale",
+      "notes": "Herbicide"
+    },
+    {
+      "active_ingredient": "aldicarb",
+      "status": "banned",
+      "citation": "Gazette notification S.O. 3951(E), 8 August 2018: banned for import, manufacture and sale",
+      "notes": "Systemic insecticide and nematicide"
+    },
+    {
+      "active_ingredient": "benomyl",
+      "status": "banned",
+      "citation": "Gazette notification S.O. 3951(E), 8 August 2018: banned for import, manufacture and sale",
+      "notes": "Systemic fungicide"
+    },
+    {
+      "active_ingredient": "carbaryl",
+      "status": "banned",
+      "citation": "Gazette notification S.O. 3951(E), 8 August 2018: banned for import, manufacture and sale",
+      "notes": "Carbamate insecticide, historically common in advisories"
+    },
+    {
+      "active_ingredient": "chlorfenvinphos",
+      "status": "banned",
+      "citation": "Gazette notification S.O. 3951(E), 8 August 2018: banned for import, manufacture and sale",
+      "notes": "Organophosphate insecticide"
+    },
+    {
+      "active_ingredient": "ddt",
+      "status": "restricted",
+      "citation": "Banned for agricultural use in India; use permitted only for public health programmes",
+      "notes": "Dichlorodiphenyltrichloroethane"
+    },
+    {
+      "active_ingredient": "lindane",
+      "status": "restricted",
+      "citation": "Use prohibited except limited permitted uses, per CIB&RC",
+      "notes": "Gamma isomer of hexachlorocyclohexane"
+    },
+    {
+      "active_ingredient": "monocrotophos",
+      "status": "restricted",
+      "citation": "Banned for use on vegetables; use restricted to registered crops only, per CIB&RC",
+      "notes": "Frequently cited in the pesticides-banned-abroad-but-used-in-India list"
+    }
+  ]
+}
