@@ -1,0 +1,61 @@
+{
+  "id": "tomato-bacterial-spot",
+  "crop": "tomato",
+  "disease": "Bacterial spot",
+  "pathogen": "Xanthomonas spp.",
+  "aliases": ["बैक्टीरियल धब्बा रोग"],
+  "symptoms": [
+    "Small water-soaked spots on leaves that turn dark brown or black, angular",
+    "Spots often at leaf edges, leaves look scorched",
+    "Black raised scabby spots on green fruit",
+    "Spread is fast in warm rainy weather"
+  ],
+  "severity_cues": {
+    "early": "Few leaf spots, fruit clean",
+    "advanced": "Leaf scorch plus fruit spots, spread across the block"
+  },
+  "favorable_conditions": "Warm (24 to 30 C), rainy, storms with wind-driven rain, overhead irrigation",
+  "treatment": {
+    "summary": "Copper-based sprays with a bacteriostat, and strict sanitation, because bactericides only suppress, they do not cure",
+    "steps": [
+      "Spray Copper hydroxide 77 WP at 2.0 g per litre plus Streptocycline at 0.05 g per litre",
+      "Repeat every 7 days while weather stays wet",
+      "Do not work among wet plants, disinfect tools",
+      "Use certified disease-free seed for the next season"
+    ],
+    "products": [
+      {
+        "name": "Copper hydroxide 77 WP",
+        "active_ingredient": "copper hydroxide",
+        "dose": "2.0",
+        "dose_max": "2.0",
+        "unit": "g per litre",
+        "phi_days": 1,
+        "label_source": "CIB&RC registered label, waiting period 1 day"
+      },
+      {
+        "name": "Streptocycline (streptomycin sulphate plus tetracycline)",
+        "active_ingredient": "streptomycin sulphate, tetracycline hydrochloride",
+        "dose": "0.05",
+        "dose_max": "0.05",
+        "unit": "g per litre",
+        "phi_days": 5,
+        "label_source": "State horticulture advisory, 0.5 g per 10 litres"
+      }
+    ],
+    "organic": [
+      "Copper oxychloride 50 WP at 2.5 g per litre",
+      "Seed treatment with hot water (52 C for 25 minutes) before sowing"
+    ]
+  },
+  "source": {
+    "org": "TNAU Agritech Portal, crop protection, tomato diseases",
+    "title": "Tomato: bacterial spot management",
+    "url": "http://agritech.tnau.ac.in/crop_protection/crop_prot_crop%20diseases%20vege/tomato_diseases.html",
+    "accessed": "2026-11-01"
+  },
+  "safety_notes": [
+    "Wear gloves, mask and full sleeves while spraying",
+    "Streptomycin products: never increase the dose, and observe the 5 day waiting period"
+  ]
+}

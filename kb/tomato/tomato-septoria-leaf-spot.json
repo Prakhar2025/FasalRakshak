@@ -1,0 +1,61 @@
+{
+  "id": "tomato-septoria-leaf-spot",
+  "crop": "tomato",
+  "disease": "Septoria leaf spot",
+  "pathogen": "Septoria lycopersici",
+  "aliases": ["सेप्टोरिया धब्बा"],
+  "symptoms": [
+    "Many small round spots, about 2 to 3 mm, with grey centres and dark edges",
+    "Tiny black dots (fruiting bodies) visible inside the spots",
+    "Spots start on lower leaves after fruit set and move upward",
+    "Leaves yellow, wither and drop, fruit itself usually stays clean"
+  ],
+  "severity_cues": {
+    "early": "Scattered small spots on lower leaves only",
+    "advanced": "Hundreds of spots per leaf, heavy defoliation, exposed fruit at sunscald risk"
+  },
+  "favorable_conditions": "Warm (20 to 25 C) and humid weather, long leaf-wetness periods, splashing rain",
+  "treatment": {
+    "summary": "Protect new growth with scheduled fungicide sprays and reduce leaf wetness",
+    "steps": [
+      "Remove badly infected lower leaves and destroy them off the field",
+      "Spray Chlorothalonil 75 WP at 2.0 g per litre, repeat every 7 days",
+      "Mulch to stop rain splashing spores from soil onto leaves",
+      "Water at the base, never on the leaves, and in the morning only"
+    ],
+    "products": [
+      {
+        "name": "Chlorothalonil 75 WP",
+        "active_ingredient": "chlorothalonil",
+        "dose": "2.0",
+        "dose_max": "2.0",
+        "unit": "g per litre",
+        "phi_days": 7,
+        "label_source": "CIB&RC registered label, waiting period 7 days"
+      },
+      {
+        "name": "Mancozeb 75 WG",
+        "active_ingredient": "mancozeb",
+        "dose": "2.0",
+        "dose_max": "2.5",
+        "unit": "g per litre",
+        "phi_days": 7,
+        "label_source": "CIB&RC registered label, waiting period 7 days"
+      }
+    ],
+    "organic": [
+      "Copper oxychloride 50 WP at 2.5 g per litre",
+      "Staking and pruning for airflow, two-year rotation out of tomato"
+    ]
+  },
+  "source": {
+    "org": "TNAU Agritech Portal, crop protection, tomato diseases",
+    "title": "Tomato: Septoria leaf spot management",
+    "url": "http://agritech.tnau.ac.in/crop_protection/crop_prot_crop%20diseases%20vege/tomato_diseases.html",
+    "accessed": "2026-11-01"
+  },
+  "safety_notes": [
+    "Wear gloves, mask and full sleeves while spraying",
+    "Do not harvest within 7 days of any fungicide spray"
+  ]
+}

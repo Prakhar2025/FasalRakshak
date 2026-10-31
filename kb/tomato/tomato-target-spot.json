@@ -1,0 +1,61 @@
+{
+  "id": "tomato-target-spot",
+  "crop": "tomato",
+  "disease": "Target spot",
+  "pathogen": "Corynespora cassiicola",
+  "aliases": ["टारगेट स्पॉट"],
+  "symptoms": [
+    "Small brown spots that grow into large lesions with concentric rings, like early blight but on younger tissue",
+    "Spots first appear on leaves near the ground after fruit set",
+    "Stem lesions and dark specks with halos on fruit",
+    "Defoliation when humid weather persists"
+  ],
+  "severity_cues": {
+    "early": "Few ringed lesions on lower leaves",
+    "advanced": "Large lesions across the canopy, fruit specking, leaf drop"
+  },
+  "favorable_conditions": "Warm (20 to 28 C), high humidity, long wet periods, dense unpruned canopy",
+  "treatment": {
+    "summary": "Scheduled protective fungicide sprays plus canopy and moisture management",
+    "steps": [
+      "Spray Mancozeb 75 WG at 2.0 g per litre, repeat every 7 days",
+      "Prune and stake for airflow, remove infected leaves off the field",
+      "Avoid overhead irrigation and wet foliage overnight",
+      "Rotate out of tomato next season"
+    ],
+    "products": [
+      {
+        "name": "Mancozeb 75 WG",
+        "active_ingredient": "mancozeb",
+        "dose": "2.0",
+        "dose_max": "2.5",
+        "unit": "g per litre",
+        "phi_days": 7,
+        "label_source": "CIB&RC registered label, waiting period 7 days"
+      },
+      {
+        "name": "Chlorothalonil 75 WP",
+        "active_ingredient": "chlorothalonil",
+        "dose": "2.0",
+        "dose_max": "2.0",
+        "unit": "g per litre",
+        "phi_days": 7,
+        "label_source": "CIB&RC registered label, waiting period 7 days"
+      }
+    ],
+    "organic": [
+      "Copper oxychloride 50 WP at 2.5 g per litre as a protectant",
+      "Two-year rotation and residue destruction after harvest"
+    ]
+  },
+  "source": {
+    "org": "TNAU Agritech Portal, crop protection, tomato diseases",
+    "title": "Tomato: fungal leaf spot management",
+    "url": "http://agritech.tnau.ac.in/crop_protection/crop_prot_crop%20diseases%20vege/tomato_diseases.html",
+    "accessed": "2026-11-01"
+  },
+  "safety_notes": [
+    "Wear gloves, mask and full sleeves while spraying",
+    "Do not harvest within 7 days of any fungicide spray"
+  ]
+}

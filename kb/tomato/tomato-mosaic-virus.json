@@ -1,0 +1,43 @@
+{
+  "id": "tomato-mosaic-virus",
+  "crop": "tomato",
+  "disease": "Tomato mosaic virus",
+  "pathogen": "Tomato mosaic virus (ToMV)",
+  "aliases": ["मोज़ेक रोग"],
+  "symptoms": [
+    "Light and dark green mottling (mosaic pattern) on young leaves",
+    "Leaves may be narrow, fern-like, or stringy",
+    "Stunted uneven growth, poor fruit set, brown streaks inside fruit possible",
+    "No fungal growth, no rot: pattern and stunting are the clues"
+  ],
+  "severity_cues": {
+    "early": "Mosaic mottling on a few plants",
+    "advanced": "Widespread stunting and fern-leaf growth, fruit quality loss"
+  },
+  "favorable_conditions": "Spread by hands, tools and infected seed or debris; Tobacco users carry it on fingers; it survives in soil and crop residue",
+  "treatment": {
+    "summary": "No chemical cures a plant virus. Contain it: remove infected plants, disinfect everything, use clean seed",
+    "steps": [
+      "Uproot and destroy symptomatic plants, handle them last in the round",
+      "Disinfect tools and stakes with 10 percent skim milk or trisodium phosphate solution",
+      "Do not smoke or chew tobacco in the field, wash hands with soap before working",
+      "For the next season: use certified virus-free or resistant seed, and rotate",
+      "Control weeds and volunteer tomato plants nearby, they host the virus"
+    ],
+    "products": [],
+    "organic": [
+      "10 percent skim milk spray as a mechanical virus suppressant on hands and tools",
+      "Certified disease-free seed, two-year rotation, residue destruction"
+    ]
+  },
+  "source": {
+    "org": "TNAU Agritech Portal, crop protection, tomato diseases",
+    "title": "Tomato: viral disease management",
+    "url": "http://agritech.tnau.ac.in/crop_protection/crop_prot_crop%20diseases%20vege/tomato_diseases.html",
+    "accessed": "2026-11-01"
+  },
+  "safety_notes": [
+    "No spray is involved: the safety comes from sanitation discipline",
+    "Infected plants must be destroyed, never composted"
+  ]
+}

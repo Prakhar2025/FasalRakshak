@@ -1,0 +1,61 @@
+{
+  "id": "tomato-leaf-mold",
+  "crop": "tomato",
+  "disease": "Leaf mold",
+  "pathogen": "Passalora fulva",
+  "aliases": ["पत्ती फफूंद", "लीफ मोल्ड"],
+  "symptoms": [
+    "Pale green or yellowish patches on the upper leaf surface",
+    "Olive-green to grey velvety fungal growth on the underside, mainly along veins",
+    "Leaves curl, wither and drop from the bottom upward",
+    "Most common in polyhouses and dense, humid canopies"
+  ],
+  "severity_cues": {
+    "early": "Few yellow patches, velvety growth only under a few leaves",
+    "advanced": "Widespread yellowing and defoliation, velvety layer under most leaves"
+  },
+  "favorable_conditions": "High humidity above 85 percent, poor airflow, temperatures 20 to 25 C, crowded planting",
+  "treatment": {
+    "summary": "Drop the humidity and protect with scheduled fungicide, airflow is half the cure",
+    "steps": [
+      "Ventilate: in protected cultivation, open sides and run fans to bring humidity below 80 percent",
+      "Remove and destroy infected lower leaves",
+      "Spray Chlorothalonil 75 WP at 2.0 g per litre, repeat every 7 days",
+      "Space plants and prune for airflow"
+    ],
+    "products": [
+      {
+        "name": "Chlorothalonil 75 WP",
+        "active_ingredient": "chlorothalonil",
+        "dose": "2.0",
+        "dose_max": "2.0",
+        "unit": "g per litre",
+        "phi_days": 7,
+        "label_source": "CIB&RC registered label, waiting period 7 days"
+      },
+      {
+        "name": "Mancozeb 75 WG",
+        "active_ingredient": "mancozeb",
+        "dose": "2.0",
+        "dose_max": "2.5",
+        "unit": "g per litre",
+        "phi_days": 7,
+        "label_source": "CIB&RC registered label, waiting period 7 days"
+      }
+    ],
+    "organic": [
+      "Copper oxychloride 50 WP at 2.5 g per litre",
+      "Resistant varieties for the next cycle, wider spacing, morning-only irrigation"
+    ]
+  },
+  "source": {
+    "org": "TNAU Agritech Portal, crop protection, tomato diseases",
+    "title": "Tomato: leaf mold management",
+    "url": "http://agritech.tnau.ac.in/crop_protection/crop_prot_crop%20diseases%20vege/tomato_diseases.html",
+    "accessed": "2026-11-01"
+  },
+  "safety_notes": [
+    "Wear gloves, mask and full sleeves while spraying",
+    "Do not harvest within 7 days of any fungicide spray"
+  ]
+}

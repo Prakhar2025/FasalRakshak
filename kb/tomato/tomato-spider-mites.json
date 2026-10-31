@@ -1,0 +1,53 @@
+{
+  "id": "tomato-spider-mites",
+  "crop": "tomato",
+  "disease": "Two-spotted spider mite damage",
+  "pathogen": "Tetranychus urticae (mite pest)",
+  "aliases": ["लाल मकड़ी", "स्पाइडर माइट"],
+  "symptoms": [
+    "Tiny yellow-white speckles (stipples) on the upper leaf surface",
+    "Fine webbing on leaf undersides and between leaves in heavy attack",
+    "Leaves bronze, dry and drop; mites are dust-sized moving dots under leaves",
+    "Damage starts at field edges and spreads in hot dry weather"
+  ],
+  "severity_cues": {
+    "early": "Speckled lower leaves, no webbing",
+    "advanced": "Webbing, bronzing across plants, leaf drop"
+  },
+  "favorable_conditions": "Hot (above 28 C), dry, dusty conditions; over-fertilized dense foliage; drought-stressed plants",
+  "treatment": {
+    "summary": "Hit the underside of leaves with a repeat spray, and reduce heat and dust stress",
+    "steps": [
+      "Spray Wettable sulphur 80 WP at 2.0 g per litre, covering the leaf undersides",
+      "Repeat once after 7 days to catch newly hatched mites",
+      "Avoid spraying sulphur when temperature crosses 32 C, it can burn leaves",
+      "Avoid over-use of broad-spectrum insecticides, they kill natural mite enemies and flare the pest"
+    ],
+    "products": [
+      {
+        "name": "Wettable sulphur 80 WP",
+        "active_ingredient": "sulphur",
+        "dose": "2.0",
+        "dose_max": "2.0",
+        "unit": "g per litre",
+        "phi_days": 3,
+        "label_source": "CIB&RC registered label, waiting period 3 days"
+      }
+    ],
+    "organic": [
+      "Neem oil 1500 ppm at 3 ml per litre, repeat every 5 days, underside coverage",
+      "Strong water spray to knock mites off in the morning",
+      "Conserve predatory mites and ladybird beetles by not spraying broad-spectrum poisons"
+    ]
+  },
+  "source": {
+    "org": "TNAU Agritech Portal, crop protection, tomato pests",
+    "title": "Tomato: mite management",
+    "url": "http://agritech.tnau.ac.in/crop_protection/crop_prot_insect%20pests%20vege/tomato_pests.html",
+    "accessed": "2026-11-01"
+  },
+  "safety_notes": [
+    "Wear gloves, mask and full sleeves while spraying",
+    "Do not harvest within 3 days of sulphur spray, and never spray sulphur above 32 C"
+  ]
+}

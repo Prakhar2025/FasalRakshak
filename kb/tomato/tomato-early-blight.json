@@ -1,0 +1,62 @@
+{
+  "id": "tomato-early-blight",
+  "crop": "tomato",
+  "disease": "Early blight",
+  "pathogen": "Alternaria solani",
+  "aliases": ["अल्टरनेरिया झुलसा", "Early blight jhulasa"],
+  "symptoms": [
+    "Dark brown spots with concentric rings, like a target, on older leaves",
+    "Yellow halo around each spot",
+    "Defoliation starting from the bottom of the plant and moving upward",
+    "Dark sunken lesions on stems near the soil line"
+  ],
+  "severity_cues": {
+    "early": "Few spots, mostly on lower leaves",
+    "advanced": "Spots on most leaves, heavy defoliation, stem lesions"
+  },
+  "favorable_conditions": "Warm days (25 to 30 C), cool nights, dew and long wet periods, nutrient-stressed plants",
+  "treatment": {
+    "summary": "Remove affected leaves and start protective fungicide sprays on a fixed schedule",
+    "steps": [
+      "Remove and destroy affected leaves away from the field, do not compost them",
+      "Spray Mancozeb 75 WG at 2.0 g per litre, repeat every 7 days",
+      "Avoid overhead watering and working in the field when leaves are wet",
+      "Keep the field weed free and improve air flow between plants"
+    ],
+    "products": [
+      {
+        "name": "Mancozeb 75 WG",
+        "active_ingredient": "mancozeb",
+        "dose": "2.0",
+        "dose_max": "2.5",
+        "unit": "g per litre",
+        "phi_days": 7,
+        "label_source": "CIB&RC registered label, waiting period 7 days"
+      },
+      {
+        "name": "Chlorothalonil 75 WP",
+        "active_ingredient": "chlorothalonil",
+        "dose": "2.0",
+        "dose_max": "2.0",
+        "unit": "g per litre",
+        "phi_days": 7,
+        "label_source": "CIB&RC registered label, waiting period 7 days"
+      }
+    ],
+    "organic": [
+      "Copper oxychloride 50 WP at 2.5 g per litre as a protectant",
+      "Neem-based extract spray as per label",
+      "Longer crop rotation of 2 to 3 years and stake training to keep leaves dry"
+    ]
+  },
+  "source": {
+    "org": "TNAU Agritech Portal, crop protection, tomato diseases",
+    "title": "Tomato: early blight management",
+    "url": "http://agritech.tnau.ac.in/crop_protection/crop_prot_crop%20diseases%20vege/tomato_diseases.html",
+    "accessed": "2026-11-01"
+  },
+  "safety_notes": [
+    "Wear gloves, mask and full sleeves while spraying",
+    "Do not harvest within 7 days of any fungicide spray"
+  ]
+}

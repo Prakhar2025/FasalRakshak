@@ -1,0 +1,61 @@
+{
+  "id": "tomato-late-blight",
+  "crop": "tomato",
+  "disease": "Late blight",
+  "pathogen": "Phytophthora infestans",
+  "aliases": ["देर से झुलसा", "लेट ब्लाइट"],
+  "symptoms": [
+    "Water-soaked pale green patches that turn brown-black within days",
+    "White fungal growth on the underside of leaves in humid weather",
+    "Greasy brown streaks on stems",
+    "Fruit turns brown and firm, then rots"
+  ],
+  "severity_cues": {
+    "early": "Isolated water-soaked patches after wet weather",
+    "advanced": "Rapid field-wide browning, white sporulation under leaves, fruit rot"
+  },
+  "favorable_conditions": "Cool nights (10 to 15 C), days around 20 to 23 C, high humidity, rain and fog, dense canopy",
+  "treatment": {
+    "summary": "Act within 24 hours: remove infected plants and spray an oomycete-specific fungicide on schedule",
+    "steps": [
+      "Uproot and destroy infected plants, bag and remove them from the field",
+      "Spray Cymoxanil 8 percent plus Mancozeb 64 percent WP at 3.0 g per litre",
+      "Repeat spray every 5 to 7 days while wet weather continues",
+      "Improve drainage and avoid evening irrigation"
+    ],
+    "products": [
+      {
+        "name": "Cymoxanil 8 percent plus Mancozeb 64 percent WP",
+        "active_ingredient": "cymoxanil, mancozeb",
+        "dose": "3.0",
+        "dose_max": "3.0",
+        "unit": "g per litre",
+        "phi_days": 14,
+        "label_source": "CIB&RC registered label, waiting period 14 days"
+      },
+      {
+        "name": "Metalaxyl 8 percent plus Mancozeb 64 percent WP",
+        "active_ingredient": "metalaxyl, mancozeb",
+        "dose": "2.5",
+        "dose_max": "2.5",
+        "unit": "g per litre",
+        "phi_days": 14,
+        "label_source": "CIB&RC registered label, waiting period 14 days"
+      }
+    ],
+    "organic": [
+      "Copper oxychloride 50 WP at 2.5 to 3.0 g per litre before infection spreads",
+      "Destroy volunteer tomato and potato plants near the field"
+    ]
+  },
+  "source": {
+    "org": "TNAU Agritech Portal, crop protection, tomato diseases",
+    "title": "Tomato: late blight management",
+    "url": "http://agritech.tnau.ac.in/crop_protection/crop_prot_crop%20diseases%20vege/tomato_diseases.html",
+    "accessed": "2026-11-01"
+  },
+  "safety_notes": [
+    "Wear gloves, mask and full sleeves while spraying",
+    "Do not harvest within 14 days of spray, longer than most sprays, plan harvest date first"
+  ]
+}

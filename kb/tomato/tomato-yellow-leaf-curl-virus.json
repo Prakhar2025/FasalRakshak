@@ -1,0 +1,54 @@
+{
+  "id": "tomato-yellow-leaf-curl-virus",
+  "crop": "tomato",
+  "disease": "Tomato yellow leaf curl virus",
+  "pathogen": "Tomato yellow leaf curl virus (begomovirus), spread by the whitefly Bemisia tabaci",
+  "aliases": ["पत्ती मरोड़ा रोग", "पीली पत्ती मरोड़"],
+  "symptoms": [
+    "New leaves turn pale yellow, curl upward and become small and cupped",
+    "Stunted plant, shortened internodes, flowers drop",
+    "No spots or rot: the tell-tale is curling of the youngest leaves",
+    "Whiteflies visible on the underside of new leaves"
+  ],
+  "severity_cues": {
+    "early": "A few plants with curled new growth",
+    "advanced": "Many stunted yellow plants, poor fruit set across the field"
+  },
+  "favorable_conditions": "Warm dry seasons with high whitefly pressure, weedy borders and nearby virus sources",
+  "treatment": {
+    "summary": "There is no cure for the virus. Control the whitefly, remove infected plants, protect the rest",
+    "steps": [
+      "Uproot and destroy plants showing symptoms, do the round weekly",
+      "Control whitefly: spray Imidacloprid 17.8 SL at 0.3 ml per litre on seedlings and edges first",
+      "Install yellow sticky traps at 10 per acre and keep them sticky",
+      "Cover nurseries with 40 to 50 mesh insect-proof net",
+      "Keep field borders weed free, they hide whiteflies"
+    ],
+    "products": [
+      {
+        "name": "Imidacloprid 17.8 SL",
+        "active_ingredient": "imidacloprid",
+        "dose": "0.3",
+        "dose_max": "0.5",
+        "unit": "ml per litre",
+        "phi_days": 5,
+        "label_source": "CIB&RC registered label, waiting period 5 days on tomato"
+      }
+    ],
+    "organic": [
+      "Yellow sticky traps and neem oil 1500 ppm at 3 ml per litre against whitefly",
+      "Resistant or tolerant varieties for the next planting",
+      "Bordered cropland with maize or castor as a whitefly trap crop"
+    ]
+  },
+  "source": {
+    "org": "TNAU Agritech Portal, crop protection, tomato diseases",
+    "title": "Tomato: yellow leaf curl virus and whitefly management",
+    "url": "http://agritech.tnau.ac.in/crop_protection/crop_prot_crop%20diseases%20vege/tomato_diseases.html",
+    "accessed": "2026-11-01"
+  },
+  "safety_notes": [
+    "Wear gloves, mask and full sleeves while spraying",
+    "Do not harvest within 5 days of any insecticide spray"
+  ]
+}
