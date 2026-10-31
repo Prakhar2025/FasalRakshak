@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+
+# Tooling caches
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Environment and secrets
+.env
+.env.local
+.env*.local
+*.pem
+
+# Datasets (eval images stay local, never committed)
+data/
+
+# SAM and AWS build artifacts
+.aws-sam/
+.aws-build/
+packaged.yaml
+
+# Frontend
+node_modules/
+.console-build/
+
+# Temp
+*.log
+tmp/
+.DS_Store
