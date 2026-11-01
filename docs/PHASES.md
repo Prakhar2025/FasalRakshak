@@ -8,8 +8,8 @@ with behavior. `main` stays green.
 | 0 | Documentation, architecture, contracts, skeleton | all docs below committed and pushed | done |
 | 1 | Knowledge base: 9 tomato entries, 7 cotton entries, banned list, eval manifest builder | schema tests green, every entry cited, banned consistency proven | done |
 | 2 | Deterministic safety gate, pure Python | every rule triggered and passing in unit + property tests | done |
-| 3 | Strands agents and pipeline, local run with Bedrock | end-to-end diagnose works locally with a real photo, mocked-AWS tests green | code done, live smoke pending AWS access |
-| 4 | Voice loop: Transcribe in, Polly out | voice round trip under budget on a sample | pending |
+| 3 | Strands agents and pipeline, local run with Bedrock | end-to-end diagnose works locally with a real photo, mocked-AWS tests green | done |
+| 4 | Voice loop: Transcribe in, Polly out | voice round trip under budget on a sample | done |
 | 5 | FastAPI service and premium web frontend | local end-to-end in browser, demo mode works, design approved by owner | pending |
 | 6 | Benchmark run and report | EVAL_REPORT.md generated, numbers in README | pending |
 | 7 | Deploy to AWS, last | live public URL, smoke tests green, demo mode verified | pending |
@@ -58,3 +58,23 @@ tests with fake agents (no AWS needed). Suite: 88 tests green. Live smoke
 test with a real photo runs as soon as the owner's AWS account has Bedrock
 Nova access enabled; a live fire with real credentials is deliberately not
 attempted from this repository without them.
+
+## Phase 4 deliverables
+
+`src/fasalrakshak/voice.py`: Amazon Transcribe (hi-IN) voice-note-to-text
+through S3 with authenticated transcript fetch, and Amazon Polly (Kajal
+neural, hi-IN) text-to-speech, both with injected clients for tests. 6 voice
+tests, suite at 94 green.
+
+## Live smoke results (Nov 1, real AWS)
+
+- Bedrock Nova Lite diagnosis on real PlantVillage photos: early blight
+  correctly identified at 0.90 to 0.92 confidence; one late blight lab photo
+  was called early blight at 0.75, the known confusable pair. The Phase 6
+  benchmark will compare Lite and Pro on all 500 images and the result
+  decides the model choice, not single photos.
+- Voice round trip: Polly spoke "मेरी टमाटर की फसल के पत्तों पर भूरे धब्बे
+  हैं, क्या करूँ?" and Transcribe heard it back character for character.
+- Diagnosis prompts now carry each candidate's curated symptom list, and the
+  triage prompt is constrained to the supported crops (tomato, cotton,
+  unknown).
