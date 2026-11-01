@@ -47,3 +47,48 @@ def test_no_json_raises() -> None:
 def test_broken_json_raises() -> None:
     with pytest.raises(AgentOutputError):
         _extract_json('{"usable": true, "reason": "oops')
+
+
+class _FakeAgent:
+    """Stands in for a Strands Agent: returns one fixed text blob."""
+
+    def __init__(self, text: str) -> None:
+        self._text = text
+
+    def __call__(self, blocks: list[dict]):
+        class _Result:
+            message = {"content": [{"text": self._text}]}
+
+        return _Result()
+
+
+def test_diagnosis_agent_normalizes_a_none_answer_to_healthy() -> None:
+    """A healthy leaf makes the model answer 'none'. That is an honest
+    diagnosis, not malformed output, and must never crash the pipeline."""
+    from fasalrakshak.agents import DiagnosisAgent
+
+    agent = DiagnosisAgent(
+        model=_FakeAgent(
+            '{"disease_id": "none", "label": "None", "confidence": 0.9, '
+            '"runner_up_id": "", "runner_up_confidence": 0.0}'
+        )
+    )
+
+    result = agent.run(b"\xff\xd8fakejpegdata", [("tomato-early-blight", "Early blight", ["rings"])])
+
+    assert result.disease_id == "healthy"
+    assert result.confidence == 0.9
+
+
+def test_diagnosis_agent_still_rejects_invented_diseases() -> None:
+    from fasalrakshak.agents import DiagnosisAgent
+
+    agent = DiagnosisAgent(
+        model=_FakeAgent(
+            '{"disease_id": "tomato-cancer", "label": "Cancer", "confidence": 0.99, '
+            '"runner_up_id": "", "runner_up_confidence": 0.0}'
+        )
+    )
+
+    with pytest.raises(AgentOutputError):
+        agent.run(b"\xff\xd8fakejpegdata", [("tomato-early-blight", "Early blight", ["rings"])])

@@ -113,7 +113,7 @@ class AudioOut(BaseModel):
 
 class DiagnoseResponse(BaseModel):
     session_id: str
-    status: Literal["treated", "retake", "escalated", "blocked"]
+    status: Literal["treated", "retake", "escalated", "blocked", "healthy"]
     triage: Optional[TriageOut] = None
     diagnosis: Optional[DiagnosisOut] = None
     treatment: Optional[TreatmentOut] = None

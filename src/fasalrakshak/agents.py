@@ -165,7 +165,18 @@ class DiagnosisAgent:
         ]
         data = _extract_json(_run_agent(self._agent, blocks))
         allowed = {kb_id for kb_id, _, _ in candidates}
-        disease_id = str(data.get("disease_id", "")).strip()
+        disease_id = str(data.get("disease_id", "")).strip().lower()
+        if disease_id in {"none", "healthy"}:
+            # The model may honestly report that no candidate matches. That is
+            # a valid diagnosis, not a malformed answer: normalize the wording
+            # and let the pipeline decide what a healthy call means.
+            return DiagnosisResult(
+                disease_id="healthy",
+                label="Healthy leaf",
+                confidence=float(data.get("confidence", 0.0)),
+                runner_up_id="",
+                runner_up_confidence=0.0,
+            )
         if disease_id not in allowed:
             raise AgentOutputError(f"model chose a disease outside the candidates: {disease_id}")
         return DiagnosisResult(

@@ -130,6 +130,33 @@ def test_retake_result_has_no_diagnosis(monkeypatch: pytest.MonkeyPatch) -> None
     assert "फोटो" in body["spoken_text"]
 
 
+def test_healthy_result_is_spoken_and_has_no_treatment(monkeypatch: pytest.MonkeyPatch) -> None:
+    test_app = create_app()
+    test_app.state.pipeline = lambda image, **kwargs: PipelineResult(
+        status="healthy",
+        triage=TriageOutcome(usable=True, reason="", crop_hint="tomato"),
+        diagnosis=DiagnosisOutcome(disease_id="healthy", label="Healthy leaf", confidence=0.88),
+        spoken_addendum=["यह पत्ती स्वस्थ दिख रही है। अभी किसी दवा की ज़रूरत नहीं है।"],
+    )
+    monkeypatch.setattr(
+        "fasalrakshak.api.main.synthesize_speech",
+        lambda text, voice_id="Kajal", engine="neural": b"FAKEMP3",
+    )
+    client = TestClient(test_app)
+
+    response = client.post(
+        "/api/diagnose",
+        data={"demo": "true", "demo_sample": "healthy", "text": "demo"},
+    )
+
+    assert response.status_code == 200
+    body = response.json()
+    assert body["status"] == "healthy"
+    assert body["treatment"] is None
+    assert body["audio"] is not None, "the healthy verdict must be spoken to the farmer"
+    assert "स्वस्थ" in body["spoken_text"]
+
+
 def test_feedback_round_trip(client: TestClient) -> None:
     first = client.post(
         "/api/diagnose",

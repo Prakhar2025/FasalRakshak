@@ -47,7 +47,10 @@ Response 200:
 
 Blocked and escalated responses are 200 too, with `safety.status` of
 `blocked` or `escalated`, `treatment: null`, and `spoken_text` carrying the
-escalation message. The farmer always gets a spoken, useful answer.
+escalation message. A confident "no disease" answer returns
+`status: "healthy"` with `treatment: null` and a spoken line telling the
+farmer the leaf looks healthy and no medicine is needed. The farmer always
+gets a spoken, useful answer.
 
 ### `GET /api/session/{session_id}`
 

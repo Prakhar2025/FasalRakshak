@@ -40,7 +40,7 @@ class DiagnosisOutcome:
 class PipelineResult:
     """Mirrors the API response contract in docs/API_CONTRACT.md."""
 
-    status: str  # treated | retake | escalated | blocked
+    status: str  # treated | retake | escalated | blocked | healthy
     triage: TriageOutcome | None = None
     diagnosis: DiagnosisOutcome | None = None
     treatment_final: Treatment | None = None
@@ -170,7 +170,16 @@ def run_diagnosis_pipeline(
             spoken_addendum=["यह तस्वीर अपने कृषि अधिकारी को दिखाएँ। अनुमान से दवा सुझाना सुरक्षित नहीं है।"],
         )
 
-    diagnosis = diagnose_fn(image, candidates)
+    try:
+        diagnosis = diagnose_fn(image, candidates)
+    except (AgentOutputError, ValueError):
+        # The diagnosis stage failed to produce a usable answer. Fail closed:
+        # the farmer is escalated to a human, never shown an error page.
+        return PipelineResult(
+            status="escalated",
+            triage=triage_outcome,
+            spoken_addendum=["यह तस्वीर अपने कृषि अधिकारी को दिखाएँ। अनुमान से दवा सुझाना सुरक्षित नहीं है।"],
+        )
 
     # ADR-0001: one bounded Nova Pro re-check when the primary model is unsure.
     if (
@@ -188,6 +197,17 @@ def run_diagnosis_pipeline(
                 runner_up_confidence=recheck.runner_up_confidence,
                 escalated_model_used=True,
             )
+
+    # A confident "no disease" is a legitimate outcome: the farmer is told the
+    # leaf looks healthy instead of being dosed. An unsure one falls through
+    # to the R5 floor below and escalates like any other low-confidence call.
+    if diagnosis.disease_id == "healthy" and diagnosis.confidence >= CONFIDENCE_FLOOR:
+        return PipelineResult(
+            status="healthy",
+            triage=triage_outcome,
+            diagnosis=diagnosis,
+            spoken_addendum=["यह पत्ती स्वस्थ दिख रही है। अभी किसी दवा की ज़रूरत नहीं है।"],
+        )
 
     if diagnosis.confidence < CONFIDENCE_FLOOR:
         return PipelineResult(

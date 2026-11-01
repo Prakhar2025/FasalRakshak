@@ -71,6 +71,12 @@ for a calibrated supervised classifier.
 
 ## Method notes
 
+- Definition note: the healthy escalation rate counts every healthy image on
+  which the system declines to prescribe, which since the healthy-leaf fix
+  (pipeline status "healthy") includes both unsure low-confidence calls and
+  explicit "healthy / none" answers from the diagnosis model. Rows that
+  errored with AgentOutputError in the original run were excluded by the
+  error filter; under the current code they count as refusals.
 - Images: PlantVillage laboratory photos (plain background, single leaf);
   field photos are harder still.
 - Latency measures the diagnosis stage only, parallel workers, not the

@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import pytest
 
+from fasalrakshak.agents import AgentOutputError
 from fasalrakshak.kb import load_all_entries, load_entry
 from fasalrakshak.pipeline import (
     DiagnosisOutcome,
@@ -94,6 +95,49 @@ def test_unusable_photo_returns_retake_never_advice() -> None:
 def test_low_confidence_without_escalation_is_fail_closed() -> None:
     result = run_diagnosis_pipeline(
         IMG, triage=make_triage(), diagnose=make_diagnose(0.55), treat=make_treat()
+    )
+
+    assert result.status == "escalated"
+    assert result.treatment_final is None
+
+
+def test_confident_healthy_leaf_gets_a_healthy_answer() -> None:
+    """A confident 'no disease' is a real outcome: spoken reassurance, no
+    chemicals, and no 500. Regression for the live healthy-sample crash."""
+
+    def healthy_diagnose(image: bytes, candidates: list[tuple[str, str]]) -> DiagnosisOutcome:
+        return DiagnosisOutcome(disease_id="healthy", label="Healthy leaf", confidence=0.88)
+
+    result = run_diagnosis_pipeline(
+        IMG, triage=make_triage(), diagnose=healthy_diagnose, treat=make_treat()
+    )
+
+    assert result.status == "healthy"
+    assert result.treatment_final is None
+    assert result.kb_entry_id == "", "no KB entry exists for a healthy leaf"
+    assert any("स्वस्थ" in line for line in result.spoken_addendum)
+
+
+def test_unsure_healthy_answer_still_escalates() -> None:
+    def unsure_diagnose(image: bytes, candidates: list[tuple[str, str]]) -> DiagnosisOutcome:
+        return DiagnosisOutcome(disease_id="healthy", label="Healthy leaf", confidence=0.40)
+
+    result = run_diagnosis_pipeline(
+        IMG, triage=make_triage(), diagnose=unsure_diagnose, treat=make_treat()
+    )
+
+    assert result.status == "escalated"
+
+
+def test_diagnosis_stage_failure_escalates_instead_of_erroring() -> None:
+    """Whatever the diagnosis stage throws, the farmer is escalated, never
+    shown an error page. Regression for the live AgentOutputError 500."""
+
+    def broken_diagnose(image: bytes, candidates: list[tuple[str, str]]) -> DiagnosisOutcome:
+        raise AgentOutputError("model chose a disease outside the candidates: none")
+
+    result = run_diagnosis_pipeline(
+        IMG, triage=make_triage(), diagnose=broken_diagnose, treat=make_treat()
     )
 
     assert result.status == "escalated"

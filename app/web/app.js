@@ -233,6 +233,8 @@
     var html = "";
     if (data.status === "retake") {
       html += notice("info", ICONS.info, "यह फोटो ठीक से नहीं आई। पत्ती को साफ रोशनी में, पास से दोबारा फोटो लें।");
+    } else if (data.status === "healthy") {
+      html += notice("ppe", ICONS.shieldCheck, t("healthy_notice"));
     } else if (data.status === "escalated") {
       html += notice("blocked", ICONS.shieldAlert, "यह तस्वीर अपने कृषि अधिकारी को दिखाएँ। अनुमान से दवा सुझाना सुरक्षित नहीं है।");
       if (data.safety && data.safety.rules_triggered && data.safety.rules_triggered.some(function (r) { return r.rule_id === "R7"; })) {

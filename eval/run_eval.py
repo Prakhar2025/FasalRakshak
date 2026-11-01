@@ -114,7 +114,13 @@ def aggregate(rows: list[dict]) -> dict:
     top2 = sum(
         1 for row in scored if row["predicted"] == row["expected"] or row["runner_up"] == row["expected"]
     )
-    escalations = sum(1 for row in healthy if (row["confidence"] or 0.0) < CONFIDENCE_FLOOR)
+    # Refusal to prescribe on a healthy leaf: unsure below the floor, or an
+    # explicit "healthy / none" call, both end in no chemical advice.
+    escalations = sum(
+        1
+        for row in healthy
+        if (row["confidence"] or 0.0) < CONFIDENCE_FLOOR or row["predicted"] == "healthy"
+    )
 
     per_class: dict[str, dict] = {}
     for row in scored:
