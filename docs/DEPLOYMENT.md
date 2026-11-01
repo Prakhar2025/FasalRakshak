@@ -28,9 +28,11 @@ tokens during the 500-image benchmark.
 
 ## Deploy steps (Phase 7)
 
-1. `sam build && sam deploy --guided` with `template.yaml` (SAM), which
-   provisions: two DynamoDB tables, Lambda, function URL, S3 buckets, budget
-   alarm, and IAM roles scoped to the specific resources above.
+1. `python scripts/deploy.py` (boto3 only, no extra tooling): idempotently
+   provisions the private media bucket, the two DynamoDB tables, the
+   least-privilege Lambda role, the ARM64 package (code + kb + web assets +
+   manylinux2014_aarch64 wheels), the function, and the public Function URL
+   with CORS, then runs a live smoke test against the public URL.
 2. Frontend: `app/web` static assets synced to the frontend bucket.
 3. CloudFront distribution in front of the function URL and the static
    bucket, OAC, HTTPS only.
