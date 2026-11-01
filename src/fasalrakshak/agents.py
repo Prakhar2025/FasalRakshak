@@ -203,13 +203,31 @@ class TreatmentAgent:
             model=_bedrock_model(model_id), system_prompt=self.SYSTEM_PROMPT
         )
 
-    def run(self, entry_json: dict) -> Treatment:
+    LANGUAGE_NAMES = {
+        "hi": "simple Hindi (Devanagari script)",
+        "en": "simple English",
+        "mr": "simple Marathi (Devanagari script)",
+        "ta": "simple Tamil",
+        "te": "simple Telugu",
+        "bn": "simple Bengali",
+        "gu": "simple Gujarati",
+        "kn": "simple Kannada",
+        "ml": "simple Malayalam",
+        "pa": "simple Punjabi",
+    }
+
+    def run(self, entry_json: dict, lang: str = "hi") -> Treatment:
+        language = self.LANGUAGE_NAMES.get(lang, self.LANGUAGE_NAMES["hi"])
         blocks = [
             {
                 "text": (
                     "Knowledge base entry:\n"
                     f"{json.dumps(entry_json, ensure_ascii=False)}\n\n"
-                    "Write the farmer treatment draft. Answer with the JSON object only."
+                    f"Write the farmer treatment draft in {language}: short sentences, "
+                    "one instruction per step, numbers with units spelled out. "
+                    "Copy the products section EXACTLY as given, do not change doses, "
+                    "units, or product names, and do not add any product. "
+                    "Answer with the JSON object only."
                 )
             }
         ]
