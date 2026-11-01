@@ -115,6 +115,8 @@ speaking the plan aloud.
 
 ## How it is built
 
+![FasalRakshak architecture: the safety gate is the unbypassable last stage before speech](https://raw.githubusercontent.com/Prakhar2025/FasalRakshak/main/docs/assets/article/architecture.png)
+
 ### Four Strands agents, one code-orchestrated pipeline
 
 | Stage | Model | Job | Why a model |
