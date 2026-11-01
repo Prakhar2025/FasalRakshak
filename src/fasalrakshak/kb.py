@@ -12,7 +12,22 @@ from pathlib import Path
 
 from .schemas import BannedList, KBEntry
 
-DEFAULT_KB_DIR = Path(__file__).resolve().parents[2] / "kb"
+def _find_kb_dir() -> Path:
+    """Locate the kb/ directory by walking upward for its marker file.
+
+    The repository (src/fasalrakshak/) and the Lambda package
+    (fasalrakshak/ under the handler root) have different depths; a marker
+    search works in both.
+    """
+    current = Path(__file__).resolve()
+    for parent in [current, *current.parents]:
+        candidate = parent / "kb"
+        if (candidate / "banned_pesticides.json").is_file():
+            return candidate
+    raise RuntimeError("kb/ not found: run from the repository or the deploy package")
+
+
+DEFAULT_KB_DIR = _find_kb_dir()
 
 
 def load_entry(disease_id: str, kb_dir: Path | None = None) -> KBEntry:
