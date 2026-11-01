@@ -20,9 +20,26 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
 from fasalrakshak.pipeline import PipelineResult, run_diagnosis_pipeline
+from fasalrakshak.store import load_store
 from fasalrakshak.voice import VoiceError, synthesize_speech
 
-WEB_DIR = Path(__file__).resolve().parents[3] / "app" / "web"
+def _find_web_dir() -> Path:
+    """Locate app/web by walking upward from this file.
+
+    The layout depth differs between the repository (src/fasalrakshak/api/)
+    and the Lambda package (fasalrakshak/api/ under the handler root), so a
+    fixed parent count breaks in one of the two. A marker search works in
+    both.
+    """
+    current = Path(__file__).resolve()
+    for parent in [current, *current.parents]:
+        candidate = parent / "app" / "web"
+        if (candidate / "index.html").is_file():
+            return candidate
+    raise RuntimeError("app/web not found: run from the repository or the deploy package")
+
+
+WEB_DIR = _find_web_dir()
 SAMPLES_DIR = WEB_DIR / "assets" / "samples"
 
 MAX_IMAGE_BYTES = 8 * 1024 * 1024
@@ -148,7 +165,7 @@ def create_app() -> FastAPI:
         allow_methods=["*"],
         allow_headers=["*"],
     )
-    app.state.sessions: dict[str, dict[str, Any]] = {}
+    app.state.store = load_store()
     app.state.pipeline: Callable[..., PipelineResult] = run_diagnosis_pipeline
 
     @app.get("/", include_in_schema=False)
@@ -269,27 +286,29 @@ def create_app() -> FastAPI:
             audio=_audio_data_uri(result, label_hi) if not demo or os.environ.get("DEMO_AUDIO", "1") == "1" else None,
         )
 
-        request.app.state.sessions[response.session_id] = {
-            "farmer_id": farmer_id,
-            "status": response.status,
-            "diagnosis": result.diagnosis,
-            "outcome": "unknown",
-        }
+        request.app.state.store.put(
+            response.session_id,
+            {
+                "farmer_id": farmer_id,
+                "status": response.status,
+                "kb_entry_id": result.kb_entry_id,
+                "outcome": "unknown",
+            },
+        )
         return response
 
     @app.get("/api/session/{session_id}")
     def get_session(session_id: str, request: Request) -> dict:
-        record = request.app.state.sessions.get(session_id)
+        record = request.app.state.store.get(session_id)
         if record is None:
             raise HTTPException(status_code=404, detail="unknown session")
         return {"session_id": session_id, **{k: str(v) for k, v in record.items()}}
 
     @app.post("/api/feedback")
     def feedback(body: FeedbackBody, request: Request) -> dict:
-        record = request.app.state.sessions.get(body.session_id)
-        if record is None:
+        updated = request.app.state.store.set_outcome(body.session_id, body.outcome)
+        if not updated:
             raise HTTPException(status_code=404, detail="unknown session")
-        record["outcome"] = body.outcome
         return {"session_id": body.session_id, "outcome": body.outcome}
 
     app.mount("/assets", StaticFiles(directory=WEB_DIR / "assets"), name="assets")
