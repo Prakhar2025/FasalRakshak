@@ -96,7 +96,8 @@ class TriageAgent:
         "You are the photo triage step of a crop disease assistant for Indian farmers. "
         "Decide if the attached photo can be used for disease diagnosis. "
         "It is usable only if a plant leaf is clearly visible and in focus. "
-        "Guess the crop if it is recognizable (tomato, cotton, or other). "
+        "The system supports tomato and cotton only: crop_hint must be exactly one "
+        "of: tomato, cotton, unknown. "
         "Answer with JSON only, exactly this shape: "
         '{"usable": true, "reason": "", "crop_hint": "tomato"} '
         "When unusable, write the reason in simple Hindi for the farmer."
@@ -126,9 +127,10 @@ class DiagnosisAgent:
     SYSTEM_PROMPT = (
         "You are the diagnosis step of a crop disease assistant for Indian farmers. "
         "You will see a leaf photo and a numbered list of candidate diseases from a "
-        "curated knowledge base. You must choose among these candidates only; you may "
-        "not invent another disease. Judge by visible symptoms: spot color and shape, "
-        "rings, yellow halos, wilting, curling, mosaic patterns, webbing. "
+        "curated knowledge base, each with its known symptoms. You must choose among "
+        "these candidates only; you may not invent another disease. Compare the photo "
+        "against each candidate's symptoms: spot color and shape, concentric rings, "
+        "yellow halos, white fungal growth, wilting, curling, mosaic patterns, webbing. "
         "Answer with JSON only, exactly this shape: "
         '{"disease_id": "tomato-early-blight", "label": "Early blight", '
         '"confidence": 0.85, "runner_up_id": "tomato-septoria-leaf-spot", '
@@ -142,20 +144,27 @@ class DiagnosisAgent:
             model=_bedrock_model(model_id), system_prompt=self.SYSTEM_PROMPT
         )
 
-    def run(self, image: bytes, candidates: list[tuple[str, str]]) -> DiagnosisResult:
-        listing = "\n".join(f"{i + 1}. {kb_id}: {label}" for i, (kb_id, label) in enumerate(candidates))
+    def run(
+        self, image: bytes, candidates: list[tuple[str, str, list[str]]]
+    ) -> DiagnosisResult:
+        listing = "\n\n".join(
+            f"{i + 1}. {kb_id} ({label})\n   Known symptoms: "
+            + "; ".join(symptoms[:3])
+            for i, (kb_id, label, symptoms) in enumerate(candidates)
+        )
         blocks = [
             {"image": {"format": _image_format(image), "source": {"bytes": image}}},
             {
                 "text": (
                     "Candidate diseases from the knowledge base:\n"
                     f"{listing}\n\n"
-                    "Diagnose the photo. Answer with the JSON object only."
+                    "Diagnose the photo against these symptom lists and answer with "
+                    "the JSON object only."
                 )
             },
         ]
         data = _extract_json(_run_agent(self._agent, blocks))
-        allowed = {kb_id for kb_id, _ in candidates}
+        allowed = {kb_id for kb_id, _, _ in candidates}
         disease_id = str(data.get("disease_id", "")).strip()
         if disease_id not in allowed:
             raise AgentOutputError(f"model chose a disease outside the candidates: {disease_id}")

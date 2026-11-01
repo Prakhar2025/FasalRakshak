@@ -174,6 +174,9 @@ def test_search_prefilters_by_symptom_keywords() -> None:
 
     assert candidates, "must always return candidates"
     assert candidates[0][0] == DISEASE, "ringed spots with yellow halo must rank early blight first"
+    assert all(len(candidate) == 3 and candidate[2] for candidate in candidates), (
+        "candidates must carry symptom lists for the diagnosis prompt"
+    )
 
 
 def test_search_with_empty_transcript_returns_stable_crop_entries() -> None:
@@ -181,7 +184,7 @@ def test_search_with_empty_transcript_returns_stable_crop_entries() -> None:
 
     candidates = search_kb_candidates("tomato", "", entries=entries)
 
-    ids = [kb_id for kb_id, _ in candidates]
+    ids = [candidate[0] for candidate in candidates]
     assert len(ids) == 3
     assert ids == sorted(ids), "stable order with no signal"
     assert all(kb_id.startswith("tomato") for kb_id in ids)

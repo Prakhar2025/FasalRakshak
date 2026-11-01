@@ -66,7 +66,7 @@ def search_kb_candidates(
     transcript: str,
     entries: dict | None = None,
     top: int = 3,
-) -> list[tuple[str, str]]:
+) -> list[tuple[str, str, list[str]]]:
     """Deterministic keyword-overlap prefilter over the knowledge base.
 
     Transcript tokens are matched against disease names, aliases and
@@ -87,7 +87,10 @@ def search_kb_candidates(
         if len(token.strip(".,!?;:()\"'")) >= 3
     }
     if not tokens:
-        return [(kb_id, entry.disease) for kb_id, entry in sorted(pool.items())][:top]
+        return [
+            (kb_id, entry.disease, list(entry.symptoms))
+            for kb_id, entry in sorted(pool.items())
+        ][:top]
 
     def score(kb_id: str, entry) -> int:
         haystack_parts = [entry.disease.lower(), *entry.aliases]
@@ -97,7 +100,7 @@ def search_kb_candidates(
         return sum(1 for token in tokens if token in haystack)
 
     ranked = sorted(pool.items(), key=lambda item: (-score(*item), item[0]))
-    return [(kb_id, entry.disease) for kb_id, entry in ranked[:top]]
+    return [(kb_id, entry.disease, list(entry.symptoms)) for kb_id, entry in ranked[:top]]
 
 
 def _default_triage() -> TriageFn:
