@@ -1,9 +1,4 @@
-"""Render the 1200x675 project banner with Pillow.
-
-Brand: deep-green gradient field, a drawn leaf mark, the wordmark in a
-strong sans, the tagline, and the trust line. Saved to
-docs/assets/banner.png and used at the top of the README and article.
-"""
+"""Render the 1200x675 banner: brand block left, real app screenshot right."""
 
 from __future__ import annotations
 
@@ -12,91 +7,64 @@ from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont
 
 WIDTH, HEIGHT = 1200, 675
-GREEN_TOP = (21, 122, 69)
-GREEN_DEEP = (8, 48, 28)
-ACCENT = (210, 234, 219)
-
-FONT_DIR = Path("C:/Windows/Fonts")
+GREEN_TOP = (23, 130, 74)
+GREEN_DEEP = (7, 42, 25)
+FONTS = Path("C:/Windows/Fonts")
 
 
 def font(name: str, size: int) -> ImageFont.FreeTypeFont:
-    return ImageFont.truetype(str(FONT_DIR / name), size)
+    return ImageFont.truetype(str(FONTS / name), size)
+
+
+def rounded(image: Image.Image, radius: int) -> Image.Image:
+    mask = Image.new("L", image.size, 0)
+    ImageDraw.Draw(mask).rounded_rectangle([0, 0, image.size[0], image.size[1]], radius=radius, fill=255)
+    image.putalpha(mask)
+    return image
 
 
 def main() -> None:
-    image = Image.new("RGB", (WIDTH, HEIGHT), GREEN_DEEP)
-    draw = ImageDraw.Draw(image)
-
-    # vertical gradient
+    base = Image.new("RGB", (WIDTH, HEIGHT), GREEN_DEEP)
+    draw = ImageDraw.Draw(base)
     for y in range(HEIGHT):
         blend = y / HEIGHT
-        row = tuple(int(a + (b - a) * blend) for a, b in zip(GREEN_TOP, GREEN_DEEP))
-        draw.line([(0, y), (WIDTH, y)], fill=row)
+        draw.line([(0, y), (WIDTH, y)], fill=tuple(int(a + (b - a) * blend) for a, b in zip(GREEN_TOP, GREEN_DEEP)))
 
-    # large translucent leaf silhouette on the right
-    leaf = Image.new("RGBA", (WIDTH, HEIGHT), (0, 0, 0, 0))
-    leaf_draw = ImageDraw.Draw(leaf)
-    leaf_draw.polygon(
-        [(760, 590), (880, 360), (1060, 240), (1150, 430), (1080, 620), (900, 660)],
-        fill=(255, 255, 255, 14),
-    )
-    leaf_draw.line([(790, 600), (1090, 280)], fill=(255, 255, 255, 26), width=6)
-    image = Image.alpha_composite(image.convert("RGBA"), leaf).convert("RGB")
-    draw = ImageDraw.Draw(image)
+    # right side: the real app screenshot, rounded, with a soft shadow plate
+    shot = Image.open("C:/Users/prakh/brag-output/fasalrakshak/assets/shots/landing.png").convert("RGB")
+    shot_w = 640
+    shot_h = int(shot.height * shot_w / shot.width)
+    shot = shot.resize((shot_w, shot_h))
+    plate = Image.new("RGBA", (shot_w + 40, shot_h + 40), (0, 0, 0, 0))
+    shadow = ImageDraw.Draw(plate)
+    shadow.rounded_rectangle([18, 26, shot_w + 26, shot_h + 34], radius=24, fill=(0, 0, 0, 110))
+    plate.paste(shot, (14, 12))
+    plate = rounded(plate, 22)
+    base.paste(plate, (530, (HEIGHT - plate.height) // 2), plate)
 
-    # leaf mark, top left
-    draw.rounded_rectangle([70, 64, 142, 136], radius=22, fill=(255, 255, 255, 26), outline=None)
-    draw.polygon(
-        [(128, 84), (100, 128), (88, 118), (118, 86)], fill=(255, 255, 255)
-    )
-    draw.arc([96, 96, 132, 132], start=200, end=340, fill=ACCENT, width=4)
+    # left: brand block
+    draw.rounded_rectangle([64, 64, 136, 136], radius=22, fill=(255, 255, 255, 30))
+    draw.polygon([(122, 84), (94, 128), (82, 118), (112, 86)], fill=(255, 255, 255))
 
-    # wordmark + subtitle
-    title = font("segoeuib.ttf", 78)
-    subtitle = font("segoeui.ttf", 34)
-    body = font("segoeui.ttf", 24)
-    small = font("segoeuisl.ttf", 20)
+    draw.text((64, 176), "FasalRakshak", font=font("segoeuib.ttf", 74), fill=(255, 255, 255))
+    draw.text((68, 268), "the crop protector", font=font("segoeuii.ttf", 29), fill=(210, 234, 219))
+    draw.text((64, 336), "A crop doctor in every", font=font("segoeuil.ttf", 33), fill=(255, 255, 255))
+    draw.text((64, 380), "farmer's pocket.", font=font("segoeuil.ttf", 33), fill=(255, 255, 255))
 
-    draw.text((70, 180), "FasalRakshak", font=title, fill=(255, 255, 255))
-    draw.text((74, 276), "the crop protector", font=font("segoeuii.ttf", 30), fill=ACCENT)
-    draw.text(
-        (70, 350),
-        "A crop doctor in every farmer's pocket.",
-        font=subtitle,
-        fill=(255, 255, 255),
-    )
-    draw.text(
-        (70, 402),
-        "Photo of a sick leaf in, safe treatment plan spoken out. In 10 Indian languages.",
-        font=body,
-        fill=(214, 234, 222),
-    )
+    draw.line([(64, 470), (470, 470)], fill=(255, 255, 255, 70), width=2)
+    for index, line in enumerate([
+        "Voice-first, 10 Indian languages",
+        "Deterministic safety gate: code decides",
+        "Every advice cites its official source",
+        "Live on AWS, 500-image published benchmark",
+    ]):
+        draw.text((64, 492 + index * 36), "+  " + line, font=font("segoeui.ttf", 21), fill=(214, 234, 222))
 
-    # divider + trust line
-    draw.line([(70, 500), (820, 500)], fill=(255, 255, 255, 60), width=2)
-    draw.text(
-        (70, 528),
-        "Built with the Strands Agents SDK on Amazon Bedrock",
-        font=body,
-        fill=(255, 255, 255),
-    )
-    draw.text(
-        (70, 566),
-        "Lambda + API Gateway + DynamoDB + Transcribe + Polly  |  models propose, code decides",
-        font=small,
-        fill=ACCENT,
-    )
-    draw.text(
-        (70, 610),
-        "500-image published benchmark  |  MIT  |  github.com/Prakhar2025/FasalRakshak",
-        font=small,
-        fill=(190, 216, 199),
-    )
+    draw.text((64, 628), "Strands Agents SDK · Amazon Bedrock · MIT", font=font("segoeuisl.ttf", 18), fill=(180, 210, 190))
 
     out = Path("docs/assets/banner.png")
-    out.parent.mkdir(parents=True, exist_ok=True)
-    image.save(out)
-    print(f"banner written: {out} ({WIDTH}x{HEIGHT})")
+    base.save(out)
+    print(f"banner v2 written: {out}")
 
 
 if __name__ == "__main__":
