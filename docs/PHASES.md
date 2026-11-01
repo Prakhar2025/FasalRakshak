@@ -7,7 +7,7 @@ with behavior. `main` stays green.
 |---|---|---|---|
 | 0 | Documentation, architecture, contracts, skeleton | all docs below committed and pushed | done |
 | 1 | Knowledge base: 9 tomato entries, 7 cotton entries, banned list, eval manifest builder | schema tests green, every entry cited, banned consistency proven | done |
-| 2 | Deterministic safety gate, pure Python | every rule triggered and passing in unit + property tests | pending |
+| 2 | Deterministic safety gate, pure Python | every rule triggered and passing in unit + property tests | done |
 | 3 | Strands agents and pipeline, local run with Bedrock | end-to-end diagnose works locally with a real photo, mocked-AWS tests green | pending |
 | 4 | Voice loop: Transcribe in, Polly out | voice round trip under budget on a sample | pending |
 | 5 | FastAPI service and premium web frontend | local end-to-end in browser, demo mode works, design approved by owner | pending |
@@ -33,3 +33,13 @@ banned and restricted snapshot with citations, commit-time consistency tests
 (no banned ingredient in any treatment, dose never exceeds label maximum,
 PPE notes on every chemical entry), and the seeded stratified eval manifest
 builder with its CLI. 34 tests green.
+
+## Phase 2 deliverables
+
+`src/fasalrakshak/safety.py`: the deterministic gate, pure Python, no model
+access, no randomness. Rules R1 to R8 from docs/SAFETY_RULES.md implemented
+in document order with human-exposure override (R7) first. 20 gate tests:
+every rule has trigger and clean-pass coverage, plus property tests over the
+whole knowledge base: no banned ingredient ever survives the gate, no dose
+ever ships above the label maximum, the gate never invents products, and the
+gate is deterministic. Full suite: 70 tests green.
