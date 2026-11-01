@@ -33,5 +33,6 @@ hears the actual product voice.
   faking one.
 - Keep the spinner visible: an honest loading state reads as a real
   product.
-- Upload to YouTube (unlisted acceptable if publicly accessible), add the
+- Upload to YouTube and set visibility to **Public** (the rules require the
+  video be publicly visible; do not use unlisted), add the
   repo link in the description, use docs/YOUTUBE.md as the package.

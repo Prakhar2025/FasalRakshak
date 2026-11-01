@@ -3,6 +3,13 @@
 *A voice-first crop advisory built with the Strands Agents SDK and Amazon
 Bedrock for the "Strands SDK: Workshop to Ship" hackathon.*
 
+**Focus area: Climate resilience.** FasalRakshak serves the most
+underserved farming households in India, the people who feed the planet
+and absorb its first and hardest climate shocks: when heat, erratic rain
+and new pest pressure hit a crop, the difference between a treated field
+and a lost harvest is whether trustworthy advice arrives in time, in a
+language the farmer speaks, at a price she can pay. It is zero.
+
 <!--
 Publishing notes (delete this block before publishing):
 - The image URLs below point at the raw GitHub files; they render as-is on
