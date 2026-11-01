@@ -8,7 +8,7 @@ with behavior. `main` stays green.
 | 0 | Documentation, architecture, contracts, skeleton | all docs below committed and pushed | done |
 | 1 | Knowledge base: 9 tomato entries, 7 cotton entries, banned list, eval manifest builder | schema tests green, every entry cited, banned consistency proven | done |
 | 2 | Deterministic safety gate, pure Python | every rule triggered and passing in unit + property tests | done |
-| 3 | Strands agents and pipeline, local run with Bedrock | end-to-end diagnose works locally with a real photo, mocked-AWS tests green | pending |
+| 3 | Strands agents and pipeline, local run with Bedrock | end-to-end diagnose works locally with a real photo, mocked-AWS tests green | code done, live smoke pending AWS access |
 | 4 | Voice loop: Transcribe in, Polly out | voice round trip under budget on a sample | pending |
 | 5 | FastAPI service and premium web frontend | local end-to-end in browser, demo mode works, design approved by owner | pending |
 | 6 | Benchmark run and report | EVAL_REPORT.md generated, numbers in README | pending |
@@ -43,3 +43,18 @@ every rule has trigger and clean-pass coverage, plus property tests over the
 whole knowledge base: no banned ingredient ever survives the gate, no dose
 ever ships above the label maximum, the gate never invents products, and the
 gate is deterministic. Full suite: 70 tests green.
+
+## Phase 3 deliverables
+
+`src/fasalrakshak/agents.py`: three Strands agents (triage, diagnosis,
+treatment) on Bedrock Nova Lite, context-complete prompt-to-JSON functions
+with a tolerant JSON extractor, candidate-bounded diagnosis (the model may
+only choose among knowledge-base candidates), and model injection for tests.
+`src/fasalrakshak/pipeline.py`: the code-owned orchestration from ADR-0002:
+deterministic keyword-overlap candidate search, bounded single Nova Pro
+escalation when confidence is low, product-name enforcement against the KB,
+and the safety gate as the last hard stage. 18 orchestration and extraction
+tests with fake agents (no AWS needed). Suite: 88 tests green. Live smoke
+test with a real photo runs as soon as the owner's AWS account has Bedrock
+Nova access enabled; a live fire with real credentials is deliberately not
+attempted from this repository without them.
