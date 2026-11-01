@@ -38,11 +38,14 @@ Built with: Strands Agents SDK, Amazon Bedrock (Nova Lite), API Gateway,
 Lambda (arm64), DynamoDB, Amazon Transcribe, Amazon Polly.
 
 0:00 The problem
-0:20 Live demo, photo to spoken answer
-1:00 The safety gate on camera
-1:40 Architecture in 40 seconds
-2:05 The benchmark, honestly
-2:30 Try it live
+0:23 The app, three ways in
+0:39 The pipeline at work
+0:58 The result, spoken aloud
+1:35 Different leaves, different answers
+1:51 The safety gate
+2:07 Architecture on AWS
+2:24 The benchmark, honestly
+2:42 Try it live
 
 #AWS #Strands #Bedrock #AgriTech #AI #Hackathon #OpenSource #SocialGood
 
