@@ -6,7 +6,7 @@ Deadline: November 4, 2026, 11:59 PM PDT.
 | # | Requirement | Owner | Due | Status |
 |---|---|---|---|---|
 | 1 | Workshop completed in the submission window, on the submitting profile | Prakhar | Nov 2 | pending |
-| 2 | Agent built with the Strands Agents SDK, running on AWS | agent + Prakhar | Nov 2 | pending |
+| 2 | Agent built with the Strands Agents SDK, running on AWS | agent + Prakhar | Nov 2 | done (live URL) |
 | 3 | Public repository with an OSI license (MIT, this repo) | agent | done in Phase 0 | done |
 | 4 | Project article published on Builder Center | agent drafts, Prakhar publishes | Nov 3 | pending |
 | 5 | Demo video, under 3 minutes, public on YouTube | agent scripts, Prakhar records | Nov 3 | pending |

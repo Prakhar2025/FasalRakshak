@@ -11,8 +11,8 @@ with behavior. `main` stays green.
 | 3 | Strands agents and pipeline, local run with Bedrock | end-to-end diagnose works locally with a real photo, mocked-AWS tests green | done |
 | 4 | Voice loop: Transcribe in, Polly out | voice round trip under budget on a sample | done |
 | 5 | FastAPI service and premium web frontend | local end-to-end in browser, demo mode works, design approved by owner | done |
-| 6 | Benchmark run and report | EVAL_REPORT.md generated, numbers in README | pending |
-| 7 | Deploy to AWS, last | live public URL, smoke tests green, demo mode verified | pending |
+| 6 | Benchmark run and report | EVAL_REPORT.md generated, numbers in README | done |
+| 7 | Deploy to AWS, last | live public URL, smoke tests green, demo mode verified | done |
 | 8 | Article draft, video script, submission package | checklist fully ticked, submitted early | pending |
 
 Workflow: the owner approves the repo state after each phase push before the
@@ -78,6 +78,27 @@ tests, suite at 94 green.
 - Diagnosis prompts now carry each candidate's curated symptom list, and the
   triage prompt is constrained to the supported crops (tomato, cotton,
   unknown).
+
+## Phase 6 deliverables
+
+Frozen 500-image manifest (seed 20261104, 50 per class, demo images
+excluded), the eval runner with throttling backoff, resume and one-fresh-
+agent-per-image discipline, three prompt experiments (names-only 0.2222,
+few-shot 0.1778, describe-first 0.1333), and docs/EVAL_REPORT.md publishing
+both models with the treatment-family metric: Lite 0.1847 top-1 / 0.6139
+family / 0 healthy-escalation 0.2174; Pro 0.1982 / 0.4788 / 0.4894. Lite
+stays primary on the farmer-relevant metric. Decision data, not vibes.
+
+## Phase 7 deliverables
+
+scripts/deploy.py (boto3 only): private media bucket, two DynamoDB tables,
+least-privilege Lambda role, ARM64 package (code + kb + web assets +
+manylinux2014_aarch64 wheels), function, and an API Gateway HTTP API front
+door (public Function URLs are blocked by an account-level control on this
+account, verified with a throwaway function: auth NONE still 403; the HTTP
+API is the standard public pattern this account allows). Live URL:
+https://xodqri8mc2.execute-api.us-east-1.amazonaws.com, smoke-tested end to
+end: GET 200, demo diagnose treated at 0.90 with Polly audio.
 
 ## Phase 5 deliverables
 

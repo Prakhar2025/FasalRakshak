@@ -95,6 +95,27 @@ is testable and no unsafe output can bypass the gate. Full diagrams:
 | `eval/` | Benchmark harness, from Phase 6 |
 | `app/` | API and web frontend, from Phase 5 |
 
+## Results
+
+Measured on 500 frozen, held-out PlantVillage tomato images against real
+Bedrock (docs/EVAL_REPORT.md, reproducible via eval/run_eval.py):
+
+| Metric | Nova Lite (primary) |
+|---|---|
+| 9-way top-1 | 0.1847 |
+| Treatment-family accuracy | 0.6139 |
+| Healthy escalation rate | 0.2174 |
+| Diagnosis latency p50 | 2141 ms |
+
+We publish the hard numbers, including where the model struggles, because a
+safety-first advisory system earns trust with calibration, not marketing.
+
+## Live
+
+Deployed on AWS (Lambda arm64 + API Gateway HTTP API + DynamoDB +
+Bedrock): **https://xodqri8mc2.execute-api.us-east-1.amazonaws.com**
+Demo mode needs no login and uses no personal data.
+
 ## License
 
 MIT. See [LICENSE](LICENSE).

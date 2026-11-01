@@ -112,7 +112,17 @@ plus healthy, fixed seed, demo images excluded) and ran the real diagnosis
 stage against real Bedrock. Numbers here are produced by eval/run_eval.py;
 rerun it and you get the same tables.
 
-{{RESULTS_TABLE}}
+| Metric | Nova Lite (primary) | Nova Pro |
+|---|---|---|
+| 9-way top-1 on 500 held-out images | 0.1847 | 0.1982 |
+| Treatment-family accuracy (the farmer metric) | **0.6139** | 0.4788 |
+| Healthy escalation (should refuse, not guess) | 0.2174 | 0.4894 |
+| Diagnosis latency p50 | 2141 ms | 2296 ms |
+
+We also tried and published three prompt strategies before accepting the
+number (names-only, few-shot reference images, describe-then-classify:
+0.2222, 0.1778, 0.1333). The full confusion matrix, calibration bands and
+method notes are in docs/EVAL_REPORT.md.
 
 ### The honest parts
 
