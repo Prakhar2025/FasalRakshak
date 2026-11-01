@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="hi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>FasalRakshak: the crop protector</title>
+  <meta name="description" content="A crop doctor in every farmer's pocket. Photograph a sick leaf, speak your problem, hear a safe treatment plan in Hindi." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Sans+Devanagari:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23157a45'/%3E%3Cpath d='M22 8c-6 0-11 3-12 9-.6 3.4 1 6 1 6s5 1 9-2 4-9 4-9l-2-4z' fill='%23fff'/%3E%3C/svg%3E" />
+</head>
+<body>
+  <main class="app-shell">
+    <header class="app-header">
+      <div class="logo-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
+      </div>
+      <div>
+        <div class="brand-name">FasalRakshak</div>
+        <div class="brand-sub">the crop protector</div>
+      </div>
+      <div class="lang-chip" title="UI in English, answers in Hindi">हिं / EN</div>
+    </header>
+
+    <p class="tagline-hi">फसल का डॉक्टर, अब आपकी जेब में</p>
+    <p class="tagline-en">Photograph the leaf, speak your problem, hear a safe plan in Hindi.</p>
+
+    <div class="toast" id="toast" role="alert"></div>
+
+    <section class="card voice-card" aria-label="Ask by voice">
+      <button class="mic-button" id="mic-button" type="button" aria-label="Record your question">
+        <span class="mic-pulse"></span>
+        <span class="mic-pulse delay" style="animation-delay:0.7s"></span>
+        <svg class="icon-mic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg>
+        <svg class="icon-stop" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"/></svg>
+      </button>
+      <p class="voice-hi" id="voice-status">बोलिए, क्या समस्या है?</p>
+      <p class="voice-en">Speak in Hindi or English, up to 15 seconds</p>
+      <button class="type-fallback" id="type-toggle" type="button">या लिखकर बताएँ</button>
+      <div class="type-panel" id="type-panel">
+        <input class="type-input hi" id="type-input" type="text" placeholder="जैसे: पत्तियों पर भूरे धब्बे हैं" aria-label="Type your problem" />
+        <button class="send-btn" id="type-send" type="button">जाँच</button>
+      </div>
+    </section>
+
+    <div class="preview-row" id="preview-row">
+      <img class="preview-thumb" id="preview-thumb" alt="Selected leaf photo" />
+      <span class="preview-name" id="preview-name"></span>
+      <button class="link-btn" id="preview-clear" type="button">हटाएँ</button>
+    </div>
+
+    <label class="upload-zone" id="upload-zone" for="photo-input">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg>
+      <p class="upload-hi">पत्ती की फोटो लें</p>
+      <p class="upload-en">Take or upload a leaf photo &middot; JPEG/PNG &middot; max 8 MB</p>
+    </label>
+    <input class="visually-hidden" id="photo-input" type="file" accept="image/jpeg,image/png" capture="environment" />
+
+    <p class="demo-label">Demo mode: judge a sample leaf, no personal data</p>
+    <div class="demo-strip" id="demo-strip">
+      <button class="demo-tile" type="button" data-sample="early-blight"><img src="/assets/samples/early-blight.jpg" alt="" />झुलसा</button>
+      <button class="demo-tile" type="button" data-sample="late-blight"><img src="/assets/samples/late-blight.jpg" alt="" />देर से झुलसा</button>
+      <button class="demo-tile" type="button" data-sample="healthy"><img src="/assets/samples/healthy.jpg" alt="" />स्वस्थ पत्ती</button>
+    </div>
+
+    <div class="processing" id="processing" aria-live="polite">
+      <div class="spinner" aria-hidden="true"></div>
+      <p class="processing-hi" id="processing-hi">जाँच हो रही है...</p>
+      <p class="processing-en">Checking your leaf. This takes about ten seconds.</p>
+    </div>
+
+    <div class="audio-bar" id="audio-bar">
+      <button class="audio-play" id="audio-play" type="button" aria-label="Play the spoken answer">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+      </button>
+      <div class="wave" id="wave" aria-hidden="true"></div>
+      <audio id="answer-audio" preload="none"></audio>
+      <span class="audio-time" id="audio-time">0:00</span>
+    </div>
+
+    <section class="result-area" id="result-area" aria-live="polite"></section>
+
+    <p class="disclaimer">यह सलाह कृषि अधिकारी की जगह नहीं लेती &middot; Not a substitute for your agriculture officer</p>
+    <p class="footer-meta">FasalRakshak &middot; Strands Agents SDK on AWS &middot; models propose, code decides</p>
+  </main>
+
+  <script src="/app.js" defer></script>
+</body>
+</html>
