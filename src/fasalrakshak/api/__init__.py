@@ -1,0 +1,1 @@
+"""FasalRakshak HTTP API package."""
