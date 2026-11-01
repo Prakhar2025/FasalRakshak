@@ -44,7 +44,8 @@ def client(monkeypatch: pytest.MonkeyPatch) -> TestClient:
     test_app.state.pipeline = lambda image, **kwargs: treated_result()
     # No Polly calls from tests: patch synthesis at the API module boundary.
     monkeypatch.setattr(
-        "fasalrakshak.api.main.synthesize_speech", lambda text: b"FAKEMP3"
+        "fasalrakshak.api.main.synthesize_speech",
+        lambda text, voice_id="Kajal", engine="neural": b"FAKEMP3",
     )
     return TestClient(test_app)
 

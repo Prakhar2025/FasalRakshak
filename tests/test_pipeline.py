@@ -45,7 +45,7 @@ def make_diagnose(confidence: float, disease: str = DISEASE, used: bool = False)
 
 
 def make_treat(dose: str | None = None, extra_product: Product | None = None):
-    def _treat(entry_json: dict, transcript: str) -> Treatment:
+    def _treat(entry_json: dict, transcript: str, lang: str = "hi") -> Treatment:
         products = [Product(**p) for p in entry_json["treatment"]["products"]]
         if dose and products:
             products[0] = products[0].model_copy(update={"dose": dose})
@@ -147,7 +147,7 @@ def test_translated_product_names_are_repaired_from_the_kb() -> None:
     """A model that restates 'Mancozeb 75 WG' as 'मंकोज़ेब 75 WG' is repaired,
     not blocked: the KB stays the single source of truth."""
 
-    def translated_treat(entry_json: dict, transcript: str) -> Treatment:
+    def translated_treat(entry_json: dict, transcript: str, lang: str = "hi") -> Treatment:
         draft = make_treat()(entry_json, transcript)
         first = draft.products[0].model_copy(update={"name": "मंकोज़ेब 75 डब्ल्यूजी"})
         return draft.model_copy(update={"products": [first, *draft.products[1:]]})

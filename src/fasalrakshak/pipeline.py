@@ -58,7 +58,7 @@ class DiagnoseFn(Protocol):
 
 
 class TreatFn(Protocol):
-    def __call__(self, entry_json: dict, transcript: str) -> Treatment: ...
+    def __call__(self, entry_json: dict, transcript: str, lang: str = "hi") -> Treatment: ...
 
 
 def search_kb_candidates(
@@ -131,7 +131,7 @@ def _default_treat() -> TreatFn:
     from .agents import TreatmentAgent
 
     agent = TreatmentAgent()
-    return lambda entry_json, transcript: agent.run(entry_json)
+    return lambda entry_json, transcript, lang="hi": agent.run(entry_json, lang)
 
 
 def run_diagnosis_pipeline(
@@ -139,6 +139,7 @@ def run_diagnosis_pipeline(
     *,
     transcript: str = "",
     days_to_harvest: int | None = None,
+    lang: str = "hi",
     triage: TriageFn | None = None,
     diagnose: DiagnoseFn | None = None,
     escalate: DiagnoseFn | None = None,
@@ -200,7 +201,7 @@ def run_diagnosis_pipeline(
     entry_json = kb_entry.model_dump()
 
     try:
-        draft = treat_fn(entry_json, transcript)
+        draft = treat_fn(entry_json, transcript, lang)
     except (AgentOutputError, ValueError):
         return PipelineResult(
             status="blocked",

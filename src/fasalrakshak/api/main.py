@@ -145,12 +145,14 @@ def build_spoken_text(result: PipelineResult, label_hi: str) -> str:
     return " ".join(part for part in parts if part)
 
 
-def _audio_data_uri(result: PipelineResult, label_hi: str) -> Optional[AudioOut]:
+def _audio_data_uri(result: PipelineResult, label_hi: str, spoken_lang: str = "hi") -> Optional[AudioOut]:
     spoken = build_spoken_text(result, label_hi)
     if not spoken:
         return None
+    voices = {"hi": ("Kajal", "neural"), "en": ("Aditi", "standard")}
+    voice_id, engine = voices.get(spoken_lang, ("Kajal", "neural"))
     try:
-        audio = synthesize_speech(spoken)
+        audio = synthesize_speech(spoken, voice_id=voice_id, engine=engine)
     except VoiceError:
         return None
     encoded = base64.b64encode(audio).decode("ascii")
@@ -195,6 +197,7 @@ def create_app() -> FastAPI:
         text: Optional[str] = Form(None),
         demo: bool = Form(False),
         session_id: Optional[str] = Form(None),
+        lang: str = Form("hi"),
     ) -> DiagnoseResponse:
         image_bytes: bytes | None = None
         farmer_id = "demo-farmer" if demo else f"farmer-{uuid.uuid4().hex[:8]}"
@@ -237,6 +240,7 @@ def create_app() -> FastAPI:
         result = request.app.state.pipeline(
             image_bytes,
             transcript=transcript,
+            lang=lang,
         )
 
         label_hi = ""
@@ -283,7 +287,7 @@ def create_app() -> FastAPI:
                 spoken_addendum=result.safety.spoken_addendum,
             ) if result.safety else None,
             spoken_text=build_spoken_text(result, label_hi),
-            audio=_audio_data_uri(result, label_hi) if not demo or os.environ.get("DEMO_AUDIO", "1") == "1" else None,
+            audio=_audio_data_uri(result, label_hi, lang) if not demo or os.environ.get("DEMO_AUDIO", "1") == "1" else None,
         )
 
         request.app.state.store.put(
