@@ -102,12 +102,17 @@ def test_non_image_bytes_are_rejected(client: TestClient) -> None:
     assert response.status_code == 400
 
 
-def test_retake_result_has_no_diagnosis() -> None:
+def test_retake_result_has_no_diagnosis(monkeypatch: pytest.MonkeyPatch) -> None:
     test_app = create_app()
     test_app.state.pipeline = lambda image, **kwargs: PipelineResult(
         status="retake",
         triage=TriageOutcome(usable=False, reason="blurry", crop_hint=""),
         spoken_addendum=["यह फोटो ठीक से नहीं आई।"],
+    )
+    # No Polly calls from tests: patch synthesis at the API module boundary.
+    monkeypatch.setattr(
+        "fasalrakshak.api.main.synthesize_speech",
+        lambda text, voice_id="Kajal", engine="neural": b"FAKEMP3",
     )
     client = TestClient(test_app)
 
