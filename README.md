@@ -1,4 +1,8 @@
 <p align="center">
+  <img src="docs/assets/banner.png" alt="FasalRakshak, the crop protector" width="820" />
+</p>
+
+<p align="center">
   <strong>FasalRakshak, the crop protector</strong><br>
   A crop doctor in every farmer's pocket.<br>
   Photograph a sick leaf, describe the problem in your own words, and get a
@@ -12,8 +16,9 @@
   <img alt="License" src="https://img.shields.io/badge/license-MIT-4cc38a">
 </p>
 
-> **Status:** in active build. Documentation first, code in tested phases.
-> Phase tracker: [docs/PHASES.md](docs/PHASES.md).
+> **Status: shipped and live on AWS.**
+> Demo (no login, no personal data): https://xodqri8mc2.execute-api.us-east-1.amazonaws.com
+> Phase tracker: [docs/PHASES.md](docs/PHASES.md). CI runs the full test suite on every push.
 
 ## The 30-second version
 

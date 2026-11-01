@@ -157,9 +157,11 @@ method notes are in docs/EVAL_REPORT.md.
 
 ## Try it
 
-The deployed URL is in the project page. Demo mode needs nothing from you:
-click a sample leaf, and in about ten seconds you will hear the answer. The
-repo has the full evaluation harness, the rule tables, and every decision
-record.
+Live demo (no login, no personal data, ten languages):
+**https://xodqri8mc2.execute-api.us-east-1.amazonaws.com**
+
+Click a sample leaf, and in about ten seconds you will hear the answer.
+The repo has the full evaluation harness, the safety rule tables, and every
+decision record: **github.com/Prakhar2025/FasalRakshak**
 
 FasalRakshak. The crop protector.
