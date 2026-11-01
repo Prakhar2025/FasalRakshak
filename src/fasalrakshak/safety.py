@@ -49,6 +49,18 @@ _POISON_SIGNALS = (
     "सांस लेने में",
     "बेहोश",
     "unconscious",
+    # Romanized Hinglish variants. Always medicine-or-chemical plus the verb,
+    # never the bare verb: "pani pi liya" (drank water) must stay harmless.
+    "dawa pi",
+    "dava pi",
+    "dawai pi",
+    "dawa pee",
+    "dava pee",
+    "dawa kha",
+    "dava kha",
+    "pesticide pi",
+    "pesticide kha",
+    "spray pi",
 )
 
 _PPE_ADDENDUM = "छिड़काव करते समय दस्ताने, मास्क और पूरे कपड़े पहनें।"

@@ -82,6 +82,24 @@ def test_r7_fires_on_english_too() -> None:
     assert verdict.final_treatment is None
 
 
+def test_r7_fires_on_romanized_hinglish() -> None:
+    draft = make_treatment(products=[make_product()])
+
+    verdict = verify_treatment(draft, transcript="papa ne dawa pi li hai")
+
+    assert verdict.status == "escalated"
+
+
+def test_r7_drank_water_stays_harmless() -> None:
+    draft = make_treatment(products=[make_product()])
+
+    verdict = verify_treatment(
+        draft, diagnosis_confidence=0.9, transcript="maine pani pi liya, dhabbe dikhao"
+    )
+
+    assert verdict.status in {"passed", "modified"}, "drinking water must never be an emergency"
+
+
 def test_r7_pest_ate_leaves_does_not_trigger() -> None:
     draft = make_treatment(products=[make_product()])
 
