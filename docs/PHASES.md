@@ -10,7 +10,7 @@ with behavior. `main` stays green.
 | 2 | Deterministic safety gate, pure Python | every rule triggered and passing in unit + property tests | done |
 | 3 | Strands agents and pipeline, local run with Bedrock | end-to-end diagnose works locally with a real photo, mocked-AWS tests green | done |
 | 4 | Voice loop: Transcribe in, Polly out | voice round trip under budget on a sample | done |
-| 5 | FastAPI service and premium web frontend | local end-to-end in browser, demo mode works, design approved by owner | pending |
+| 5 | FastAPI service and premium web frontend | local end-to-end in browser, demo mode works, design approved by owner | done |
 | 6 | Benchmark run and report | EVAL_REPORT.md generated, numbers in README | pending |
 | 7 | Deploy to AWS, last | live public URL, smoke tests green, demo mode verified | pending |
 | 8 | Article draft, video script, submission package | checklist fully ticked, submitted early | pending |
@@ -78,3 +78,21 @@ tests, suite at 94 green.
 - Diagnosis prompts now carry each candidate's curated symptom list, and the
   triage prompt is constrained to the supported crops (tomato, cotton,
   unknown).
+
+## Phase 5 deliverables
+
+`app/web/`: the farmer frontend. Mobile-first design system (Inter plus Noto
+Sans Devanagari, one green accent, high contrast for outdoor use), voice
+capture with pulsing record state and typed fallback, photo upload with
+preview, demo strip with three PlantVillage samples, skeleton and spinner
+states, an audio player for the spoken answer, and fail-closed UX where
+every error ends in a clear Hindi message. `src/fasalrakshak/api/`: the
+FastAPI service per docs/API_CONTRACT.md with injected pipeline for tests,
+demo mode with no personal data, spoken-text assembly, and Polly audio as a
+data URI. One pipeline hardening found by live testing: treatment products
+are now rebuilt verbatim from the knowledge base by active ingredient, so a
+model that translates a product name into Hindi is repaired, and an
+invented ingredient is still blocked. Live end-to-end through the real
+server: early blight diagnosed at 0.85, KB-verbatim products with PHI,
+citation chip, 443-character Hindi spoken script and real Polly audio.
+Suite: 105 tests green.
