@@ -65,14 +65,13 @@ def search_kb_candidates(
     crop_hint: str,
     transcript: str,
     entries: dict | None = None,
-    top: int = 3,
 ) -> list[tuple[str, str, list[str]]]:
-    """Deterministic keyword-overlap prefilter over the knowledge base.
+    """Rank the knowledge base for one request. Never hides a candidate.
 
-    Transcript tokens are matched against disease names, aliases and
-    symptoms. With an empty transcript, the crop's entries are returned in
-    stable order. This function is code, not a model: the diagnosis prompt
-    may only choose among what this returns.
+    The model must be able to choose among ALL entries of the crop: a
+    transcript only reorders candidates, it never cuts the list, because an
+    alphabetically-buried disease would otherwise be undiagnosable. With no
+    crop hint, every entry in the catalog is ranked.
     """
     catalog = entries or load_all_entries()
     if crop_hint:
@@ -86,13 +85,10 @@ def search_kb_candidates(
         for token in transcript.lower().split()
         if len(token.strip(".,!?;:()\"'")) >= 3
     }
-    if not tokens:
-        return [
-            (kb_id, entry.disease, list(entry.symptoms))
-            for kb_id, entry in sorted(pool.items())
-        ][:top]
 
     def score(kb_id: str, entry) -> int:
+        if not tokens:
+            return 0
         haystack_parts = [entry.disease.lower(), *entry.aliases]
         for symptom in entry.symptoms:
             haystack_parts.append(symptom.lower())
@@ -100,7 +96,7 @@ def search_kb_candidates(
         return sum(1 for token in tokens if token in haystack)
 
     ranked = sorted(pool.items(), key=lambda item: (-score(*item), item[0]))
-    return [(kb_id, entry.disease, list(entry.symptoms)) for kb_id, entry in ranked[:top]]
+    return [(kb_id, entry.disease, list(entry.symptoms)) for kb_id, entry in ranked]
 
 
 def _default_triage() -> TriageFn:

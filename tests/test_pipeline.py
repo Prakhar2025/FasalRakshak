@@ -205,15 +205,19 @@ def test_search_prefilters_by_symptom_keywords() -> None:
     )
 
 
-def test_search_with_empty_transcript_returns_stable_crop_entries() -> None:
+def test_search_never_hides_a_candidate() -> None:
+    """Every tomato entry must reach the model, transcript or not."""
     entries = load_all_entries()
 
-    candidates = search_kb_candidates("tomato", "", entries=entries)
+    without_signal = search_kb_candidates("tomato", "", entries=entries)
+    with_signal = search_kb_candidates("tomato", "mosaic pattern on leaves", entries=entries)
 
-    ids = [candidate[0] for candidate in candidates]
-    assert len(ids) == 3
-    assert ids == sorted(ids), "stable order with no signal"
-    assert all(kb_id.startswith("tomato") for kb_id in ids)
+    ids_without = [candidate[0] for candidate in without_signal]
+    ids_with = [candidate[0] for candidate in with_signal]
+    assert len(ids_without) == 9, "no transcript must rank all 9 tomato entries"
+    assert len(ids_with) == 9, "a transcript reorders but never cuts the list"
+    assert set(ids_without) == set(ids_with)
+    assert ids_with[0] == "tomato-mosaic-virus", "signal must reorder the strongest match to the front"
 
 
 def test_search_unknown_crop_falls_back_to_catalog() -> None:
