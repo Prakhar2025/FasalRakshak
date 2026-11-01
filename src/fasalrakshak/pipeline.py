@@ -213,16 +213,25 @@ def run_diagnosis_pipeline(
             spoken_addendum=["यह तस्वीर अपने कृषि अधिकारी को दिखाएँ। अनुमान से दवा सुझाना सुरक्षित नहीं है।"],
         )
 
-    # Code decides: the draft may only restate the KB entry's products.
-    kb_product_names = {p["name"] for p in entry_json["treatment"]["products"]}
-    draft_product_names = {p.name for p in draft.products}
-    if not draft_product_names <= kb_product_names:
+    # Code decides: the draft may only restate KB products, matched by active
+    # ingredient. A model that translates a product name into Hindi is
+    # repaired from the KB; a model that invents an ingredient is blocked.
+    kb_products = entry_json["treatment"]["products"]
+    kb_by_ingredient = {p["active_ingredient"]: p for p in kb_products}
+    draft_ingredients = {p.active_ingredient for p in draft.products}
+    if not draft_ingredients <= set(kb_by_ingredient):
         return PipelineResult(
             status="blocked",
             triage=triage_outcome,
             diagnosis=diagnosis,
+            kb_entry_id=diagnosis.disease_id,
             spoken_addendum=["यह तस्वीर अपने कृषि अधिकारी को दिखाएँ। अनुमान से दवा सुझाना सुरक्षित नहीं है।"],
         )
+
+    from .schemas import Product
+
+    rebuilt = [Product(**kb_by_ingredient[p.active_ingredient]) for p in draft.products]
+    draft = draft.model_copy(update={"products": rebuilt})
 
     verdict = gate(
         draft,

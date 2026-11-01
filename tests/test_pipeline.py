@@ -121,7 +121,7 @@ def test_escalation_rescue_is_bounded_to_one_recheck() -> None:
     assert len(calls) == 1
 
 
-def test_gate_blocks_when_treatment_invents_a_product() -> None:
+def test_gate_blocks_when_treatment_invents_an_ingredient() -> None:
     intruder = Product(
         name="Mystery 100 EC",
         active_ingredient="mystery",
@@ -140,9 +140,36 @@ def test_gate_blocks_when_treatment_invents_a_product() -> None:
 
     assert result.status == "blocked"
     assert result.treatment_final is None
+    assert result.kb_entry_id == DISEASE, "blocked results still name the KB entry"
 
 
-def test_gate_caps_overlabel_dose_and_still_treats() -> None:
+def test_translated_product_names_are_repaired_from_the_kb() -> None:
+    """A model that restates 'Mancozeb 75 WG' as 'मंकोज़ेब 75 WG' is repaired,
+    not blocked: the KB stays the single source of truth."""
+
+    def translated_treat(entry_json: dict, transcript: str) -> Treatment:
+        draft = make_treat()(entry_json, transcript)
+        first = draft.products[0].model_copy(update={"name": "मंकोज़ेब 75 डब्ल्यूजी"})
+        return draft.model_copy(update={"products": [first, *draft.products[1:]]})
+
+    result = run_diagnosis_pipeline(
+        IMG,
+        triage=make_triage(),
+        diagnose=make_diagnose(0.9),
+        treat=translated_treat,
+    )
+
+    assert result.status == "treated"
+    assert result.treatment_final is not None
+    names = [p.name for p in result.treatment_final.products]
+    assert names[0] == "Mancozeb 75 WG", "shipped product names are KB-verbatim"
+
+
+def test_pipeline_ships_kb_verbatim_doses_even_when_model_overstates() -> None:
+    """Products are rebuilt verbatim from the KB before the gate, so an
+    overlabel dose drafted by a model never reaches the farmer. The gate's
+    own R2 test proves the second line of defense."""
+
     result = run_diagnosis_pipeline(
         IMG,
         triage=make_triage(),
@@ -151,10 +178,9 @@ def test_gate_caps_overlabel_dose_and_still_treats() -> None:
     )
 
     assert result.status == "treated"
-    assert result.safety is not None
-    assert any(rule.rule_id == "R2" for rule in result.safety.rules_triggered)
     assert result.treatment_final is not None
-    assert result.treatment_final.products[0].dose == "2.5"
+    assert result.treatment_final.products[0].dose == "2.0", "KB dose wins over the model draft"
+    assert result.treatment_final.products[0].dose_max_value >= result.treatment_final.products[0].dose_value
 
 
 def test_poison_transcript_overrides_everything() -> None:
