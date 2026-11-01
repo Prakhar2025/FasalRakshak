@@ -3,6 +3,15 @@
 *A voice-first crop advisory built with the Strands Agents SDK and Amazon
 Bedrock for the "Strands SDK: Workshop to Ship" hackathon.*
 
+<!--
+Publishing notes (delete this block before publishing):
+- The image URLs below point at the raw GitHub files; they render as-is on
+  Builder Center if the editor accepts external images. If it prefers
+  uploads, drag docs/assets/article/*.png into the editor at the same spots.
+- Every screenshot is a real capture from the live deployment; do not
+  substitute mocks.
+-->
+
 ![FasalRakshak banner](https://raw.githubusercontent.com/Prakhar2025/FasalRakshak/main/docs/assets/banner.png)
 
 A tomato farmer in Maharashtra finds brown spots spreading across her
@@ -58,6 +67,12 @@ The answer is not just text on a screen. It is spoken aloud through Amazon
 Polly, it carries the official advisory it came from, and it has already
 passed a safety gate before a single word is spoken.
 
+![The FasalRakshak app, live on AWS](https://raw.githubusercontent.com/Prakhar2025/FasalRakshak/main/docs/assets/article/app.png)
+
+One click on the language chip, and the same app speaks Tamil:
+
+![The same app after switching to Tamil](https://raw.githubusercontent.com/Prakhar2025/FasalRakshak/main/docs/assets/article/tamil.png)
+
 ## One request, end to end
 
 To show the system honestly, here is what happens when a farmer taps the
@@ -67,6 +82,9 @@ first demo leaf and the pipeline runs against live AWS.
    usability and the crop is hinted. A blurred or non-leaf image stops the
    pipeline here and the farmer hears a polite retake request. No further
    tokens are spent on a photo that cannot be diagnosed.
+
+![The real app while the pipeline runs](https://raw.githubusercontent.com/Prakhar2025/FasalRakshak/main/docs/assets/article/checking.png)
+
 2. **Diagnosis (Strands agent, Nova Lite multimodal).** The leaf is examined
    against the curated knowledge-base candidates only, with each candidate's
    documented symptoms in context. The model cannot invent a disease: the
@@ -87,6 +105,13 @@ first demo leaf and the pipeline runs against live AWS.
 The whole voice path is budgeted under 12 seconds (upload and triage 2 s,
 transcription 4 s, diagnosis 4 s, treatment and gate 2 s, Polly and
 delivery 2 s). The text path skips transcription and targets under 8 s.
+
+And this is what the farmer actually sees: the diagnosis with its
+confidence, the plan in plain Hindi, label-verbatim doses with pre-harvest
+warnings, the PPE line, the cited source, and the audio player already
+speaking the plan aloud.
+
+![The treated answer: diagnosis, steps, doses, PHI, PPE, citation](https://raw.githubusercontent.com/Prakhar2025/FasalRakshak/main/docs/assets/article/answer.png)
 
 ## How it is built
 
@@ -146,6 +171,15 @@ The gate fails closed: if it cannot verify a treatment, the farmer hears
 | A wrong guess on a hard photo | Code: R5 escalates below the confidence floor |
 | A farmer accidentally poisoned | Code: R7 overrides everything with emergency guidance |
 | A confident wrong treatment | The gate: fail closed, human handoff |
+
+Both fail-closed paths are real, captured from the live deployment. An
+unsure photo escalates to the agriculture officer instead of guessing, and
+a confident "no disease" tells the farmer the leaf looks healthy instead of
+reaching for a chemical:
+
+![Unsure: escalated to a human, never guessed](https://raw.githubusercontent.com/Prakhar2025/FasalRakshak/main/docs/assets/article/escalated.png)
+
+![Confident no disease: the farmer is told the leaf is healthy](https://raw.githubusercontent.com/Prakhar2025/FasalRakshak/main/docs/assets/article/healthy.png)
 
 ## Running on AWS
 
