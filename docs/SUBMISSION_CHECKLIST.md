@@ -5,7 +5,7 @@ Deadline: November 4, 2026, 11:59 PM PDT.
 
 | # | Requirement | Owner | Status |
 |---|---|---|---|
-| 1 | Workshop completed in the submission window, on the submitting profile (hard pass/fail, verified on the profile, no screenshot needed anywhere) | Prakhar | pending, planned Nov 2 |
+| 1 | Workshop completed in the submission window, on the submitting profile (hard pass/fail, verified on the profile, no screenshot needed anywhere) | Prakhar | done Nov 2: sandbox event attended and completed, feedback submitted, workshop listed under Your workshops on builder.aws.com |
 | 2 | Agent built with the Strands Agents SDK, running on AWS | done | live: https://xodqri8mc2.execute-api.us-east-1.amazonaws.com |
 | 3 | Public repository with an OSI license (MIT) | done | github.com/Prakhar2025/FasalRakshak, CI green |
 | 4 | Project article published on Builder Center | Prakhar publishes | draft ready: docs/ARTICLE_DRAFT.md with banner, 6 real screenshots and the architecture diagram |
