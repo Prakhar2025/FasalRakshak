@@ -212,7 +212,7 @@ Estimated infrastructure cost for the whole hackathon window: under USD 2,
 dominated by Bedrock tokens during the 500-image benchmark. No secrets live
 in the repository; AWS credentials exist only in the environment.
 
-**Engineering quality.** 105 tests run in CI on every push (GitHub
+**Engineering quality.** 111 tests run in CI on every push (GitHub
 Actions): full HTTP-stack API tests with a fake pipeline, unit tests for
 every safety rule in both trigger and clean-pass directions, voice tests
 with injected fakes, and property tests that fail the build if any KB entry
