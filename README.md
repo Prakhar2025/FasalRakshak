@@ -18,6 +18,7 @@
 
 > **Status: shipped and live on AWS.**
 > Demo (no login, no personal data): https://xodqri8mc2.execute-api.us-east-1.amazonaws.com
+> Demo video (2m 51s): https://youtu.be/QCazkh270jQ
 > Phase tracker: [docs/PHASES.md](docs/PHASES.md). CI runs the full test suite on every push.
 
 ## The 30-second version
@@ -120,6 +121,7 @@ safety-first advisory system earns trust with calibration, not marketing.
 Deployed on AWS (Lambda arm64 + API Gateway HTTP API + DynamoDB +
 Bedrock): **https://xodqri8mc2.execute-api.us-east-1.amazonaws.com**
 Demo mode needs no login and uses no personal data.
+Demo video (2m 51s): **https://youtu.be/QCazkh270jQ**
 
 ## License
 
