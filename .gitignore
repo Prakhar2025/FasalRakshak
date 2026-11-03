@@ -37,3 +37,24 @@ node_modules/
 *.log
 tmp/
 .DS_Store
+
+# competitor research scrape files (never commit to the public repo)
+all_hackathon_submissions.json
+candidates_with_video.json
+candidates_summary.txt
+climate_subs_clean.txt
+deep_inspect_out.txt
+repos_eval.json
+competitor_analysis.json
+entries_summary.json
+our_live_submission.json
+real_submissions.json
+page.html
+script_0.json
+script_3.json
+script_4.json
+submitted_markdown.md
+submitted_page.html
+submitted_script_0.json
+submitted_script_3.json
+submitted_script_4.json
